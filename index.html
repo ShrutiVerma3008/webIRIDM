@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IRIDM DM Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <h1>IRIDM Disaster‑Management Assistant 🚒</h1>
+    <p>Plan and respond to emergencies effectively across the IRIDM campus.</p>
+  </header>
+
+  <aside>
+    <h2><i class="fas fa-sliders-h"></i> Disaster Controls</h2>
+
+    <label for="disasterPrep">⚙️ Preparedness:</label>
+    <select id="disasterPrep">
+      <option value="">Select</option>
+      <option>Training</option>
+      <option>Drills</option>
+      <option>DM Emergency Response Team</option>
+      <option>Evacuation Plans</option>
+    </select>
+
+    <label for="disasterMitig">🛡️ Mitigation:</label>
+    <select id="disasterMitig">
+      <option value="">Select</option>
+      <option>Infrastructure</option>
+      <option>Redundancies</option>
+      <option>Emergency Supplies</option>
+    </select>
+
+    <label for="disasterType">⚠️ Disaster Type:</label>
+    <select id="disasterType" onchange="updateDisasterSubtypes()">
+      <option value="">Select</option>
+      <option value="Natural">Natural</option>
+      <option value="ManMade">Man‑made</option>
+      <option value="Technical">Technical Failure</option>
+    </select>
+
+    <div id="subTypeContainer" style="margin-top: 1rem;"></div>
+
+    <div id="incidentActions"></div>
+
+    <div class="action-cards">
+      <button class="card-btn" onclick="alert('Registration for Mock Drill coming soon!')">
+        <i class="fas fa-person-running"></i>
+        <span>Register for Mock Drill</span>
+      </button>
+      <button class="card-btn" onclick="alert('Public Awareness Campaign launched!')">
+        <i class="fas fa-bullhorn"></i>
+        <span>Launch Awareness Drive</span>
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <section id="tabs">
+      <button onclick="showTab('overview')">📘 Full DM Plan</button>
+      <button onclick="showTab('prep')">⚙️ Preparedness</button>
+      <button onclick="showTab('mitig')">🛡️ Mitigation</button>
+      <button onclick="showTab('response')">🚒 Response</button>
+      <button onclick="showTab('recovery')">🔧 Recovery</button>
+    </section>
+
+    <section id="tabContent">
+      <div id="overview" class="tabPanel">
+        <!-- Overview content -->
+         <h2>IRIDM Disaster Management Plan Overview</h2>
+        <p>Content about DMP...</p>
+        <p>Disaster Management Plan – Indian Railways Institute of Disaster Management (IRIDM), Bengaluru.This tool integrates IRIDM's real-time Disaster Management Plan (DMP).
+          Use the sidebar to read and navigate IRIDM's comprehensive plan or activate response workflows.
+        </p>
+        <h2> Objectives</h2>
+        <p>
+          <li>Ensure personnel & asset safety</li>
+          <li>Minimize operational disruption</li>
+          <li>Provide coordinated emergency response</li>
+          <li>Enable swift recovery</li>
+          <li>Build resilience via training</li></p>
+      </div>
+      <div id="prep" class="tabPanel" style="display:none">
+        <h2>Disaster Preparedness</h2>
+        <div id="prepContent"></div>
+        <div id="fireDetails"></div>
+      </div>
+      <div id="mitig" class="tabPanel" style="display:none">
+        <!-- Mitigation content -->
+         <h2>🛡️ Mitigation Measures</h2>
+         <P>
+          <li>Infrastructure: Fire alarms, extinguishers, proper drainage</li>
+          <li>Redundancy: Power backup, water tanks, communication systems</li>
+          <li>Safety stock: First aid, water, food, emergency lighting</li>
+          <li>Compliance: Earthquake-resilient infrastructure standards</li></P>
+      </div>
+      <div id="response" class="tabPanel" style="display:none">
+        <!-- Response content -->
+         <h3>Incident Command System (ICS) led by Director</h3>
+         <p>
+          <ul>
+              <li>Evacuation plans executed by Evacuation Team</li>
+              <li>First Aid & medical assistance</li>
+              <li>Firefighting via extinguishers & calling authorities</li>
+              <li>Search & Rescue to ensure no one is left behind</li>
+              <li>Centralized communication via designated spokesperson</li>
+            </ul>
+            </p>
+      </div>
+      <div id="recovery" class="tabPanel" style="display:none">
+        <!-- Recovery content -->
+         <h3>Recovery and Rehabilitation </h3>
+         <P><li>Damage assessment and quick repairs</li>
+            <li>Shelter & care for affected individuals</li>
+            <li>Counseling and psychological support</li>
+            <li>Full restoration of services (power, water, IT)</li>
+            <li>Post-disaster review and plan updates</li>
+            <li>Government compensation facilitation (if applicable)</li></P>
+      </div>
+    </section>
+
+    <section id="map">
+      <h2>Live Campus & Fire Resources Map</h2>
+      <div id="mapid" style="height: 400px;"></div>
+    </section>
+  </main>
+
+  <script>
+    function updateDisasterSubtypes() {
+      const type = document.getElementById("disasterType").value;
+      const subTypeContainer = document.getElementById("subTypeContainer");
+      subTypeContainer.innerHTML = "";
+
+      if (type === "Natural") {
+        subTypeContainer.innerHTML = `
+          <label for='subType'><i class='fas fa-mountain'></i> Select Subtype:</label>
+          <select id='subType' onchange='handleSubtype(this.value)'>
+            <option value=''>Select</option>
+            <option>Flood</option>
+            <option>Earthquake</option>
+            <option>Cyclone</option>
+          </select>`;
+      } else if (type === "ManMade") {
+        subTypeContainer.innerHTML = `
+          <label for='subType'><i class='fas fa-industry'></i> Select Subtype:</label>
+          <select id='subType' onchange='handleSubtype(this.value)'>
+            <option value=''>Select</option>
+            <option>Fire</option>
+            <option>Train Accident</option>
+            <option>Infrastructure Collapse</option>
+            <option>Machinery Breakdown</option>
+            <option>Medical Emergency</option>
+          </select>`;
+      } else if (type === "Technical") {
+        subTypeContainer.innerHTML = `
+          <label for='subType'><i class='fas fa-microchip'></i> Select Subtype:</label>
+          <select id='subType' onchange='handleSubtype(this.value)'>
+            <option value=''>Select</option>
+            <option>Power Failure</option>
+            <option>IT System Breakdown</option>
+            <option>Transportation Accident</option>
+          </select>`;
+      }
+    }
+
+    function handleSubtype(value) {
+      const details = document.getElementById("fireDetails");
+      if (value === "Fire") {
+        showTab("prep");
+        details.innerHTML = `
+          <div class="info-box">
+            <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
+            <p><strong>Name:</strong> Kengeri Fire Station<br>
+               <strong>Phone:</strong> <a href='tel:+918022851049'>+918022851049</a><br>
+               <strong>ETA:</strong> ~7 mins
+            </p>
+            <button onclick="logFireIncident()">Log Fire Call</button>
+          </div>
+          <div class="info-box">
+            <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
+            <ul>
+              <li><strong>St. John's Hospital</strong> - <a href='tel:18004250000'>1800-425-0000</a></li>
+              <li><strong>Narayana Multispeciality</strong> - <a href='tel:18003090000'>1800-309-0000</a></li>
+            </ul>
+          </div>
+          <div class="info-box">
+            <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
+            <label>Call Time: <input type='time' id='callTime'></label><br>
+            <label>Arrival Time: <input type='time' id='arrivalTime'></label><br>
+            <label>Resolution Time: <input type='time' id='resolveTime'></label><br>
+            <label>Ambulance Details: <input type='text' id='ambulanceInfo' placeholder='Ambulance Reg./Driver'></label><br>
+            <label>Patient Condition: <textarea id='patientNote'></textarea></label><br>
+            <button onclick='submitIncidentDetails()'>Submit Log</button>
+          </div>`;
+      } else {
+        details.innerHTML = "";
+      }
+    }
+
+    function logFireIncident() {
+      alert("Fire call has been logged successfully.");
+    }
+
+   
+    function submitIncidentDetails() {
+  const callTime = document.getElementById('callTime').value;
+  const arrival = document.getElementById('arrivalTime').value;
+  const resolve = document.getElementById('resolveTime').value;
+  const ambulance = document.getElementById('ambulanceInfo').value;
+  const patient = document.getElementById('patientNote').value;
+
+  if (!callTime || !arrival || !resolve || !ambulance || !patient) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  fetch('http://localhost:5000/api/log', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      status: 'Fire Incident',
+      location: 'IRIDM Campus',
+      notes: `Call: ${callTime}, Arrival: ${arrival}, Resolve: ${resolve}, Ambulance: ${ambulance}, Patient: ${patient}`
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert('Incident details submitted and logged successfully.');
+  })
+  .catch(error => {
+    console.error('Error logging incident:', error);
+    alert('Failed to submit log.');
+  });
+
+      alert(`Fire Incident Logged:\nCall: ${callTime}\nArrival: ${arrival}\nResolved: ${resolve}\nAmbulance: ${ambulance}\nPatient: ${patient}`);
+    }
+  </script>
+
+  <script>
+function handleSubtype(value) {
+  const details = document.getElementById("fireDetails");
+  if (value === "Fire") {
+    showTab("prep");
+    details.innerHTML = `
+      <div class="info-box">
+        <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
+        <p><strong>Name:</strong> Kengeri Fire Station<br>
+           <strong>Phone:</strong> <a href='tel:+918022851049'>+918022851049</a><br>
+           <strong>ETA:</strong> ~7 mins
+        </p>
+        <button onclick="logFireIncident()">Log Fire Call</button>
+      </div>
+      <div class="info-box">
+        <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
+        <ul>
+          <li><strong>St. John's Hospital</strong> - <a href='tel:18004250000'>1800-425-0000</a></li>
+          <li><strong>Narayana Multispeciality</strong> - <a href='tel:18003090000'>1800-309-0000</a></li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
+        <label>Call Time: <input type='time' id='callTime'></label><br>
+        <label>Arrival Time: <input type='time' id='arrivalTime'></label><br>
+        <label>Resolution Time: <input type='time' id='resolveTime'></label><br>
+        <label>Ambulance Details: <input type='text' id='ambulanceInfo' placeholder='Ambulance Reg./Driver'></label><br>
+        <label>Patient Condition: <textarea id='patientNote'></textarea></label><br>
+        <button onclick='submitIncidentDetails()'>Submit Log</button>
+      </div>
+    `;
+  } else if (value === "Evacuation Plans") {
+    showTab("prep");
+    const evacSection = document.getElementById("prepContent");
+    const responseTab = document.getElementById("response");
+    const evacHTML = `
+      <div class='evacuation-plan'>
+        <h3>Ground Floor - Hostel Block</h3>
+         <img src="./hostel_groundFloor.jpg" alt="Hostel Ground Floor Plan">
+      </div>
+      <div class='evacuation-plan'>
+        <h3>Ground Floor - Admin Block (coming soon)</h3>
+        <img src='' alt='Placeholder for Admin Ground Floor Plan'>
+      </div>
+      <div class='evacuation-plan'>
+        <h3>First Floor - Admin Block (coming soon)</h3>
+        <img src='' alt='Placeholder for Admin First Floor Plan'>
+      </div>
+      <div class='evacuation-plan'>
+        <h3>First Floor & Terrace - Hostel (coming soon)</h3>
+       
+        <img src="./hostelTopFloor.jpg" alt="Hostel Top Floor Plan">
+
+      </div>
+    `;
+    evacSection.innerHTML = evacHTML;
+    responseTab.innerHTML += `<h3>🧭 Evacuation Reference Plan</h3>${evacHTML}`;
+  } else {
+    details.innerHTML = "";
+  }
+}
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const responseTab = document.getElementById("response");
+  fetch("http://localhost:5000/api/logs")
+    .then(res => res.json())
+    .then(data => {
+      if (data.length) {
+        let table = `<table class='log-table'><thead><tr><th>Timestamp</th><th>Status</th><th>Location</th><th>Details</th></tr></thead><tbody>`;
+        data.forEach(row => {
+          table += `<tr><td>${row.timestamp}</td><td>${row.status}</td><td>${row.location}</td><td>${row.notes}</td></tr>`;
+        });
+        table += `</tbody></table>`;
+        responseTab.innerHTML += `<h3>🚨 Incident Response Logs</h3>${table}`;
+      }
+    })
+    .catch(err => console.error("Error fetching logs:", err));
+});
+</script>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
