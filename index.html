@@ -13,7 +13,13 @@
   <header>
     <h1>IRIDM Disaster‑Management Assistant 🚒</h1>
     <p>Plan and respond to emergencies effectively across the IRIDM campus.</p>
+     <img src="IRIDM LOGO 1.png" alt="IRIDM Logo" class="logo">
   </header>
+  <!--<div class="header">
+  <h1>IRIDM Disaster Management System</h1>
+  <img src="IRIDM LOGO 1.png" alt="IRIDM Logo" class="logo">
+</div> -->
+
 
   <aside>
     <h2><i class="fas fa-sliders-h"></i> Disaster Controls</h2>
@@ -76,6 +82,7 @@
         <p>Disaster Management Plan – Indian Railways Institute of Disaster Management (IRIDM), Bengaluru.This tool integrates IRIDM's real-time Disaster Management Plan (DMP).
           Use the sidebar to read and navigate IRIDM's comprehensive plan or activate response workflows.
         </p>
+        <img src="AdminBlock.jpg" alt="Admin Block">
         <h2> Objectives</h2>
         <p>
           <li>Ensure personnel & asset safety</li>
@@ -88,6 +95,24 @@
         <h2>Disaster Preparedness</h2>
         <div id="prepContent"></div>
         <div id="fireDetails"></div>
+              <div class='evacuation-plan'>
+        <h3>Ground Floor - Hostel Block</h3>
+         <img src="hostelGroundFloor.jpg" alt="Hostel Ground Floor Plan">
+      </div>
+      <div class='evacuation-plan'>
+        <h3>Ground Floor - Admin Block (coming soon)</h3>
+        <img src='' alt='Placeholder for Admin Ground Floor Plan'>
+      </div>
+      <div class='evacuation-plan'>
+        <h3>First Floor - Admin Block (coming soon)</h3>
+        <img src='' alt='Placeholder for Admin First Floor Plan'>
+      </div>
+      <div class='evacuation-plan'>
+        <h3>First Floor & Terrace - Hostel (coming soon)</h3>
+       
+        <img src="firstFloorHostel.jpg" alt="Hostel Top Floor Plan">
+
+      </div>
       </div>
       <div id="mitig" class="tabPanel" style="display:none">
         <!-- Mitigation content -->
@@ -261,6 +286,8 @@ function handleSubtype(value) {
         <ul>
           <li><strong>St. John's Hospital</strong> - <a href='tel:18004250000'>1800-425-0000</a></li>
           <li><strong>Narayana Multispeciality</strong> - <a href='tel:18003090000'>1800-309-0000</a></li>
+          <li><strong>RajaRajeswari Medical Hospital </strong> - <a href='tel:08028437878'>080-2843 7878</a></li>
+
         </ul>
       </div>
       <div class="info-box">
@@ -280,7 +307,7 @@ function handleSubtype(value) {
     const evacHTML = `
       <div class='evacuation-plan'>
         <h3>Ground Floor - Hostel Block</h3>
-         <img src="./hostel_groundFloor.jpg" alt="Hostel Ground Floor Plan">
+         <img src="hostel_groundFloor - Copy.jpg" alt="Hostel Ground Floor Plan">
       </div>
       <div class='evacuation-plan'>
         <h3>Ground Floor - Admin Block (coming soon)</h3>
@@ -293,7 +320,7 @@ function handleSubtype(value) {
       <div class='evacuation-plan'>
         <h3>First Floor & Terrace - Hostel (coming soon)</h3>
        
-        <img src="./hostelTopFloor.jpg" alt="Hostel Top Floor Plan">
+        <img src="hostelTopFloor.jpg" alt="Hostel Top Floor Plan">
 
       </div>
     `;
