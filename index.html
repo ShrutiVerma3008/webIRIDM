@@ -20,7 +20,9 @@
   <img src="IRIDM LOGO 1.png" alt="IRIDM Logo" class="logo">
 </div> -->
 
-
+<div class="accordion-section">
+  <button class="accordion-btn">⚙️ Preparedness</button>
+  <div class="accordion-content" id="accordion-preparedness">
   <aside>
     <h2><i class="fas fa-sliders-h"></i> Disaster Controls</h2>
 
@@ -64,6 +66,8 @@
       </button>
     </div>
   </aside>
+  </div>
+</div>
 
   <main>
     <section id="tabs">
@@ -72,6 +76,7 @@
       <button onclick="showTab('mitig')">🛡️ Mitigation</button>
       <button onclick="showTab('response')">🚒 Response</button>
       <button onclick="showTab('recovery')">🔧 Recovery</button>
+      <button onclick="showTab('hrv')">⚠️ Hazard Prone Area (HRV)</button>
     </section>
 
     <section id="tabContent">
@@ -94,7 +99,13 @@
       <div id="prep" class="tabPanel" style="display:none">
         <h2>Disaster Preparedness</h2>
         <div id="prepContent"></div>
-        <div id="fireDetails"></div>
+        <div id="fireDetails"><div class="info-box">
+                <h3><i class="fas fa-fire"></i> Fire Safety Equipments at IRIDM :</h3>
+                <p><strong>Fire extinguisher ABC type:</strong> 8 , one in each class</p>
+                <p><strong>Fire Emergency Exit:</strong> 2 </p>
+                <p><strong>Trained Staff:</strong> 8 firefighters, 1 supervisor</p>
+              </div>
+              </div>
               <div class='evacuation-plan'>
         <h3>Ground Floor - Hostel Block</h3>
          <img src="hostelGroundFloor.jpg" alt="Hostel Ground Floor Plan">
@@ -135,7 +146,101 @@
               <li>Centralized communication via designated spokesperson</li>
             </ul>
             </p>
+            <h3>📊 Incident Command Structure</h3>
+            <ul>
+              <li><strong>Director</strong> – Incident Commander</li>
+              <li><strong>Safety Officer</strong> – Monitors hazard conditions</li>
+              <li><strong>Operations Chief</strong> – Directs firefighting & evacuation</li>
+              <li><strong>Logistics Chief</strong> – Coordinates equipment, manpower</li>
+              <li><strong>Information Officer</strong> – Communicates with public & media</li>
+            </ul>
+
+            <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
+            <div id="damageTab" class="tabPanel" style="display: none;">
+              <h3>Damage Assessment Details</h3>
+              <ul>
+                <li>Structural Damage Evaluation</li>
+                <li>IT Infrastructure & Equipment Loss</li>
+                <li>Casualty & Injury Reports</li>
+                <li>Estimated Recovery Cost</li>
+              </ul>
+              <!--<h3>Record New Damage</h3>
+              <label>Type: <input type="text" id="damageType"></label>
+              <label>Cost: <input type="number" id="damageCost"></label>
+              <label>Replaced: 
+                <select id="damageReplaced">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </label>
+              <button onclick="recordDamage()">Submit</button>
+              <button onclick="toggleDamageHistory()">📄 View History</button>
+              <div id="damageHistory" style="display:none;"></div>
+            -->
+             <h3>🧱 Structural Damage Evaluation</h3>
+              <div class="form-block">
+                <label>Location: <input type="text" id="structLoc"></label>
+                <label>Damage Level: <input type="text" id="structLevel"></label>
+                <label>Remarks: <textarea id="structRemarks"></textarea></label>
+                <button onclick="saveStructDamage()">Save</button>
+                <button onclick="viewHistory('struct')">📄 View History</button>
+                <button onclick="downloadCSV('struct')">⬇ Download CSV</button>
+              </div>
+
+              <div id="structHistory"></div>
+
+              <hr>
+
+              <h3>💻 IT Infrastructure & Equipment Loss</h3>
+              <div class="form-block">
+                <label>System/Area: <input type="text" id="itArea"></label>
+                <label>Type of Equipment: <input type="text" id="itType"></label>
+                <label>Remarks: <textarea id="itRemarks"></textarea></label>
+                <button onclick="saveITLoss()">Save</button>
+                <button onclick="viewHistory('it')">📄 View History</button>
+                <button onclick="downloadCSV('it')">⬇ Download CSV</button>
+              </div>
+
+              <div id="itHistory"></div>
+
+<!-- Add Casualty and Cost sections the same way -->
+        <h3>🤕 Casualty and Injury Reports </h3>
+        <div class="form-block">
+          <label>Person Name: <input type="text" id="casualtyName"></label>
+          <label>Injury Severity: <input type="text" id="casualtySeverity"></label>
+          <label>Details: <textarea id="casualtyNote"></textarea></label>
+          <button onclick="saveCasualtyDamage()">Save</button>
+
+          <button onclick="viewHistory('struct')">📄 View History</button>
+          <button onclick="downloadCSV('struct')">⬇ Download CSV</button>
+        </div>
+
+        <div id="casualtyData"></div>
+
+        <hr>
+
+        <h3>💹 Estimated Recovery Cost</h3>
+        <div class="form-block">
+          <label>Estimated Cost (INR): <input type="number" id="recoveryCost"></label>
+          <label>Affected Area: <input type="text" id="recoveryArea"></label>
+          <label>Remarks: <textarea id="recoveryRemarks"></textarea></label>
+          <button onclick="saveRecoveryLoss()">Save</button>
+          <button onclick="viewHistory('it')">📄 View History</button>
+          <button onclick="downloadCSV('it')">⬇ Download CSV</button>
+        </div>
+
+        <div id="recoveryData"></div>
       </div>
+      </div>
+      <div id="hrv" class="tabPanel" style="display:none;">
+        <h3>Hazard Risk & Vulnerability (HRV) Map</h3>
+        <ul>
+          <li>Room 201 – 🔥 Fire Prone (Pantry)</li>
+          <li>Lab A1 – ⚡ Short Circuit Risk</li>
+          <li>Admin Basement – 🌊 Flood Prone</li>
+        </ul>
+      </div>
+
       <div id="recovery" class="tabPanel" style="display:none">
         <!-- Recovery content -->
          <h3>Recovery and Rehabilitation </h3>
@@ -145,12 +250,26 @@
             <li>Full restoration of services (power, water, IT)</li>
             <li>Post-disaster review and plan updates</li>
             <li>Government compensation facilitation (if applicable)</li></P>
-      </div>
+          <div class="ics-diagram">
+          <div class="node">Director<br><small>Fire & Emergency</small></div>
+          <div class="node-branch">
+            <div class="node">Operations Chief<br><small>Fire Response</small></div>
+            <div class="node">Logistics Chief<br><small>Equipment</small></div>
+            <div class="node">IT Head<br><small>Technical Failure</small></div>
+          </div>
+        </div>
+
+          </div>
     </section>
 
     <section id="map">
-      <h2>Live Campus & Fire Resources Map</h2>
-      <div id="mapid" style="height: 400px;"></div>
+      <h2>Live Campus </h2>
+      <div id="mapid" style="height: 400px;"><div style="position:absolute; top: 120px; right: 20px; z-index: 999;">
+      <div id="mapCompass" style="position:absolute; top:100px; right:25px; z-index:1000;">
+  <img src="campass.png" id="compassIcon" style="width:60px; transform: rotate(0deg);">
+</div>
+</div>
+</div>
     </section>
   </main>
 
@@ -292,9 +411,11 @@ function handleSubtype(value) {
       </div>
       <div class="info-box">
         <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
-        <label>Call Time: <input type='time' id='callTime'></label><br>
+        <label>Reporting Call Time: <input type='time' id='callTime'></label><br>
         <label>Arrival Time: <input type='time' id='arrivalTime'></label><br>
         <label>Resolution Time: <input type='time' id='resolveTime'></label><br>
+        <label>Cause of Fire: <textarea id='fireCause'></label><br>
+        <label>Number of Staff reached: <input type='text' id='staffreached'></label><br>
         <label>Ambulance Details: <input type='text' id='ambulanceInfo' placeholder='Ambulance Reg./Driver'></label><br>
         <label>Patient Condition: <textarea id='patientNote'></textarea></label><br>
         <button onclick='submitIncidentDetails()'>Submit Log</button>
@@ -331,6 +452,87 @@ function handleSubtype(value) {
   }
 }
 </script>
+
+<!-- Below are the integrated additions based on your request -->
+
+<!-- 1. ICS Hierarchy (under Response Tab) -->
+<!--<div id="ics-hierarchy" class="tabPanel" style="display:none">
+  <h2>🧭 ICS Hierarchy Structure</h2>
+  <img src="ics_chart.png" alt="ICS Hierarchy Chart">
+  <p>
+    The Incident Command System (ICS) at IRIDM follows a top-down leadership model:
+    <ul>
+      <li><strong>Incident Commander:</strong> Director</li>
+      <li><strong>Operations Chief:</strong> Response team coordinator</li>
+      <li><strong>Logistics Chief:</strong> Supplies & personnel manager</li>
+      <li><strong>Planning Chief:</strong> Handles information & action plans</li>
+      <li><strong>Safety Officer:</strong> Ensures responder safety</li>
+    </ul>
+  </p>
+</div>-->
+
+<!-- 2. Damage Assessment Dropdown (opens sub-tab or modal) -->
+<!--<label for="damageAssessment">📋 Damage Assessment:</label>
+<select id="damageAssessment">
+  <option value="">Select</option>
+  <option value="building">Building Damage</option>
+  <option value="infrastructure">Infrastructure</option>
+  <option value="utilities">Utilities & Power</option>
+  <option value="casualties">Casualties</option>
+</select>
+<div id="damageContent" class="info-box"></div>-->
+
+<!-- 3. Hazard Risk & Vulnerability Analysis (HRV Section) -->
+<!--<div id="hrv-analysis" class="tabPanel" style="display:none">
+  <h2>🚧 Hazard Risk & Vulnerability Analysis (HRV)</h2>
+  <ul>
+    <li><strong>Flood-Prone Area:</strong> Admin block basement</li>
+    <li><strong>Trespassing Zone:</strong> Boundary behind Hostel</li>
+    <li><strong>Short Circuit Prone:</strong> Server room & labs</li>
+    <li><strong>High Wind Zone:</strong> Open terrace above canteen</li>
+  </ul>
+</div>-->
+
+<!-- 4. Compass for Map -->
+<!--<div id="mapCompass" style="position:absolute; top:100px; right:25px; z-index:1000">
+  <img src="compass.png" alt="Compass" style="width:80px;">
+</div>-->
+
+<!-- 5. Map Outline Highlight (IRIDM Campus Outline) -->
+<!--<script>
+  const iridmBoundary = [
+    [12.9080, 77.4325],
+    [12.9085, 77.4335],
+    [12.9075, 77.4337],
+    [12.9070, 77.4326],
+    [12.9080, 77.4325] // close the polygon
+  ];
+  L.polygon( iridmBoundary, {
+    color: '#ff0000',
+    fillOpacity: 0.1,
+    weight: 2
+  }).addTo(map).bindPopup("IRIDM Campus Outline");
+</script>-->
+
+<!-- 6. JavaScript to Show Tab (Damage Assessment) -->
+<!--<script>
+  document.getElementById('damageAssessment').addEventListener('change', function() {
+    const value = this.value;
+    const box = document.getElementById('damageContent');
+    if (value === 'building') {
+      box.innerHTML = '<h3>Building Damage</h3><p>Cracks, roof collapses, structural integrity checks needed.</p>';
+    } else if (value === 'infrastructure') {
+      box.innerHTML = '<h3>Infrastructure</h3><p>Broken roads, damaged water lines, communication cut-offs.</p>';
+    } else if (value === 'utilities') {
+      box.innerHTML = '<h3>Utilities</h3><p>Power outages, water contamination, gas leaks.</p>';
+    } else if (value === 'casualties') {
+      box.innerHTML = '<h3>Casualties</h3><p>Injuries, fatalities, medical transport and triage zones.</p>';
+    } else {
+      box.innerHTML = '';
+    }
+  });
+</script> -->
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

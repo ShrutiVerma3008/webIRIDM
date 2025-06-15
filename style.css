@@ -24,6 +24,53 @@ header {
   height: auto;
 }
 
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  background: #eee;
+  padding: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px;
+  background: #fafafa;
+  border-left: 3px solid #1976d2;
+}
+.ics-diagram {
+  text-align: center;
+}
+.node {
+  background: #e3f2fd;
+  border: 2px solid #2196f3;
+  border-radius: 8px;
+  padding: 10px;
+  display: inline-block;
+  margin: 10px;
+}
+.node-branch {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-block {
+  background: #f4f4f4;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #1976d2;
+  border-radius: 6px;
+}
+
+.form-block input, .form-block textarea {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  padding: 8px;
+}
+
 
 aside {
   background-color: #ffffff;
@@ -203,4 +250,17 @@ textarea {
   main {
     margin-left: 0;
   }
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
 }
