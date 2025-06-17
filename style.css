@@ -6,6 +6,7 @@ body {
   flex-direction: column;
   background-color: #f0f4f8;
   color: #333;
+
 }
 
 header {
@@ -78,8 +79,8 @@ aside {
   width: 260px;
   border-right: 1px solid #ddd;
   height: 100vh;
-  position: fixed;
-  top: 80px;
+  position: absolute;
+  top: 180px;
   left: 0;
   overflow-y: auto;
   box-shadow: 2px 0 5px rgba(0,0,0,0.05);

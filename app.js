@@ -96,6 +96,15 @@ function viewHistory(type) {
     data = itData;
     id = 'itHistory';
   }
+  else if (type==='casual'){
+    data = casualtyData;
+    id='casualtyData'
+  }
+  else if(type==='re_cost'){
+    data= recoveryData;
+    id='recoveryData';
+  }
+  
   let table = '<table border="1"><tr>';
   Object.keys(data[0] || {}).forEach(k => table += `<th>${k}</th>`);
   table += '</tr>';
@@ -116,6 +125,13 @@ function downloadCSV(type) {
   } else if (type === 'it') {
     data = itData;
     filename = 'it_equipment_loss.csv';
+  } else if(type=='casual'){
+    data=casualtyData;
+    filename='casualty_injury_reoprt.csv';
+  }
+  else if(type='re_cost'){
+    data=recoveryData;
+    filename='recovery_cost.csv';
   }
   if (!data.length) {
     alert("No records found.");
@@ -133,6 +149,12 @@ function downloadCSV(type) {
   a.click();
 }
 
+  function downloadAllCSVs() {
+      downloadCSV('it');
+      downloadCSV('struct');
+      downloadCSV('re_cost');
+      downloadCSV('casual');
+    }
 let casualtyData = [];
 
 function saveCasualtyDamage() {
@@ -228,7 +250,7 @@ const hospitalIcon = L.icon({
 });
 
 const policeIcon = L.icon({
-  iconUrl: 'icons/police.png',
+  iconUrl: 'police.png',
   iconSize: [32, 32],
   iconAnchor: [16, 32],
   popupAnchor: [0, -32]
@@ -245,25 +267,34 @@ campusLocations.forEach(loc => {
   }).addTo(map).bindPopup(`<b>${loc.name}</b>`);
 
   // Assuming you already have a Leaflet map initialized as `map`
-L.marker([12.9133, 77.4488],{ icon: fireIcon }) // 🔥 Nagarbhavi Fire Station
+
+L.marker([12.93542, 77.51003],{ icon: fireIcon }) // 🔥 Nagarbhavi Fire Station
   .addTo(map)
   .bindPopup("<b>Nagarbhavi Fire Station</b><br>📞 <a href='tel:101'>101</a><b>Distance : 14.7km</b><b> Time ~ 32min</b>");
-L.marker([12.9133, 77.4488],{ icon: fireIcon }) // 🔥 ramanagara Fire Station
+L.marker([12.74299, 77.3106],{ icon: fireIcon }) // 🔥 ramanagara Fire Station
   .addTo(map)
   .bindPopup("<b>Ramanagara Fire Station</b><br>📞 <a href='tel:101'>101</a><b>Distance : 21.4km</b><b> Time ~ 34min</b>");
 
-L.marker([12.9353, 77.6067],{ icon: hospitalIcon }) // 🏥 St. John's Hospital
+L.marker([12.896507938688266, 77.46182557283645],{ icon: hospitalIcon }) // 🏥 St. John's Hospital
   .addTo(map)
-  .bindPopup("<b>St. John's Hospital</b><br>📞 <a href='tel:18004250000'>1800-425-0000</a>");
-
-L.marker([12.9357, 77.5445],{ icon: hospitalIcon }) // 🏥 Narayana Multispeciality
+  .bindPopup("<b>RajaRajeshwari hospital, Kengeri </b><br>📞 <a href='tel:08028437888'>08028437888</a>");
+L.marker([12.893717728784821, 77.4574634250733],{ icon: hospitalIcon }) // 🏥 
   .addTo(map)
-  .bindPopup("<b>Narayana Multispeciality</b><br>📞 <a href='tel:18003090000'>1800-309-0000</a>");
-
-L.marker([12.9066, 77.5193],{ icon: hospitalIcon }) // 🏥 RajaRajeswari Medical Hospital
+  .bindPopup("<b>Sdm Institute Of Ayurveda and Hospital, Kengeri </b><br>📞 <a href='tel:09741897124'>09741897124</a>");
+  
+L.marker([12.903171772113318, 77.49750795390914],{ icon: hospitalIcon }) // 🏥 Narayana Multispeciality
   .addTo(map)
-  .bindPopup("<b>RajaRajeswari Medical Hospital</b><br>📞 <a href='tel:08028437878'>080-2843-7878</a>");
+  .bindPopup("<b>Gleneagles bgs hospital, Kengeri y</b><br>📞 <a href='tel:8527306331'>8527306331</a>");
 
+L.marker([12.93214692297212, 77.49295223601291],{ icon: hospitalIcon }) // 🏥 RajaRajeswari Medical Hospital
+  .addTo(map)
+  .bindPopup("<b>Bangalore Hospital Kengeri</b><br>📞 <a href='tel:9090804680'>9090804680</a>");
+L.marker([12.912371214356572, 77.48172766982762],{ icon: policeIcon }) // 🏥 RajaRajeswari Medical Hospital
+  .addTo(map)
+  .bindPopup("<b>Kengeri Police Station</b><br>📞 <a href='tel:08022942510'>08022942510</a>");
+L.marker([12.884487098478836, 77.44940630107578],{ icon: policeIcon }) // 🏥 RajaRajeswari Medical Hospital
+  .addTo(map)
+  .bindPopup("<b>Kumbalagudu Police Station</b><br>📞 <a href='tel:08028437599'>08028437599</a>");
 
 });
 // Campus boundary (example coordinates)
@@ -277,6 +308,6 @@ const campusOutline = [
 L.polygon(campusOutline, {
   color: 'red',
   fillColor: '#f03',
-  fillOpacity: 0.1
+  fillOpacity: 0.5
 }).addTo(map).bindPopup("IRIDM Campus Boundary");
 

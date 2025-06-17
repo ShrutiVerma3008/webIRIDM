@@ -100,28 +100,89 @@
         <h2>Disaster Preparedness</h2>
         <div id="prepContent"></div>
         <div id="fireDetails"><div class="info-box">
+          <h2> Safety Area Information : </h2>
+                  <div class="info-box">
+                  <h3><i class="fas fa-poilceStation"></i> Nearby Police Station</h3>
+                  <ul>
+                    <p><strong>Name:</strong> Kumbalagudu Police Station <br>
+                    <strong>Phone:</strong> <a href='tel:08028437599'>08028437599 </a><br>
+                    <strong>Distance : </strong>6.6 km<br>
+                    <strong>⏰ETA:</strong> ~13 mins
+                  </p>
+                    <p><strong>Name:</strong> Kengeri Police Station <br>
+                    <strong>Phone:</strong> <a href='tel:08022942510'>08022942510 </a><br>
+                    <strong>Distance : </strong> 8.7 km<br>
+                    <strong>⏰ETA:</strong> ~17 mins
+                  </p>
+                  
+            
+                </ul>
+                </div>
+              
+                <div class="info-box">
+                  <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
+                  <ul>
+                    <p><strong>Name:</strong> RajaRajeshwari hospital, Kengeri  <br>
+                    <strong>Phone:</strong> <a href='tel:08028437888'>080 2843 7888 </a><br>
+                    <strong>Distance : </strong> 4 km<br>
+                    <strong>⏰ETA:</strong> ~10mins
+                  </p>
+                  <p><strong>Name:</strong> Sdm Institute Of Ayurveda and Hospital, Kengeri  <br>
+                    <strong>Phone:</strong> <a href='tel:09741897124'>09741897124</a><br>
+                    <strong>Distance : </strong> 5.6 km<br>
+                    <strong>⏰ETA:</strong> ~13mins
+                  </p>
+                    <p><strong>Name:</strong> Gleneagles bgs hospital, Kengeri  <br>
+                    <strong>Phone:</strong> <a href='tel:8527306331'> 8527306331 </a><br>
+                    <strong>Distance : </strong> 11.2 km<br>
+                    <strong>⏰ETA:</strong> ~26 mins
+                  </p>  
+
+
+                    <p><strong>Name:</strong> Bangalore Hospital Kengeri <br>
+                    <strong>Phone:</strong> <a href='tel:9090804680'> 9090804680 </a><br>
+                    <strong>Distance : </strong> 11.4 km<br>
+                    <strong>⏰ETA:</strong> ~27 mins
+                  </p>            </ul>
+                </div>
+                  <div class="info-box">
+                  <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
+                  <p><strong>Name:</strong> Nagarbhavi Fire Station <br>
+                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+                    <strong>Distance : </strong> 14.7 km<br>
+                    <strong>⏰ETA:</strong> ~32 mins
+                  </p>
+                  <p><strong>Name:</strong> Ramanagara Fire Station <br>
+                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+                    <strong>Distance : </strong> 21.4 km<br>
+                    <strong>⏰ETA:</strong> ~34 mins
+                  </p>
+                  <button onclick="logFireIncident()">Log Fire Call</button>
+                </div>
+            
                 <h3><i class="fas fa-fire"></i> Fire Safety Equipments at IRIDM :</h3>
                 <p><strong>Fire extinguisher ABC type:</strong> 8 , one in each class</p>
                 <p><strong>Fire Emergency Exit:</strong> 2 </p>
                 <p><strong>Trained Staff:</strong> 8 firefighters, 1 supervisor</p>
               </div>
               </div>
+
               <div class='evacuation-plan'>
         <h3>Ground Floor - Hostel Block</h3>
          <img src="hostelGroundFloor.jpg" alt="Hostel Ground Floor Plan">
       </div>
       <div class='evacuation-plan'>
-        <h3>Ground Floor - Admin Block (coming soon)</h3>
-        <img src='' alt='Placeholder for Admin Ground Floor Plan'>
+        <h3>Ground Floor - Admin Block </h3>
+        <img src='adminBlockGround.jpg' alt='Placeholder for Admin Ground Floor Plan'>
       </div>
       <div class='evacuation-plan'>
-        <h3>First Floor - Admin Block (coming soon)</h3>
-        <img src='' alt='Placeholder for Admin First Floor Plan'>
+        <h3>First Floor - Admin Block</h3>
+        <img src='adminFirst.jpg' alt='Placeholder for Admin First Floor Plan'>
       </div>
       <div class='evacuation-plan'>
-        <h3>First Floor & Terrace - Hostel (coming soon)</h3>
+        <h3>First Floor & Terrace - Hostel </h3>
        
-        <img src="firstFloorHostel.jpg" alt="Hostel Top Floor Plan">
+        <img src="hostelFirest.jpg" alt="Hostel Top Floor Plan">
 
       </div>
       </div>
@@ -211,8 +272,8 @@
           <label>Details: <textarea id="casualtyNote"></textarea></label>
           <button onclick="saveCasualtyDamage()">Save</button>
 
-          <button onclick="viewHistory('struct')">📄 View History</button>
-          <button onclick="downloadCSV('struct')">⬇ Download CSV</button>
+          <button onclick="viewHistory('casual')">📄 View History</button>
+          <button onclick="downloadCSV('casual')">⬇ Download CSV</button>
         </div>
 
         <div id="casualtyData"></div>
@@ -225,8 +286,8 @@
           <label>Affected Area: <input type="text" id="recoveryArea"></label>
           <label>Remarks: <textarea id="recoveryRemarks"></textarea></label>
           <button onclick="saveRecoveryLoss()">Save</button>
-          <button onclick="viewHistory('it')">📄 View History</button>
-          <button onclick="downloadCSV('it')">⬇ Download CSV</button>
+          <button onclick="viewHistory('re_cost')">📄 View History</button>
+          <button onclick="downloadCSV('re_cost')">⬇ Download CSV</button>
         </div>
 
         <div id="recoveryData"></div>
@@ -258,7 +319,7 @@
             <div class="node">IT Head<br><small>Technical Failure</small></div>
           </div>
         </div>
-
+        <button onclick="downloadAllCSVs()">⬇ Download CSV information of Damage Assessment and quicks repairs</button>
           </div>
     </section>
 
@@ -318,19 +379,62 @@
         details.innerHTML = `
           <div class="info-box">
             <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
-            <p><strong>Name:</strong> Kengeri Fire Station<br>
-               <strong>Phone:</strong> <a href='tel:+918022851049'>+918022851049</a><br>
-               <strong>ETA:</strong> ~7 mins
+            <p><strong>Name:</strong> Nagarbhavi Fire Station <br>
+               <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+               <strong>Distance : </strong> 14.7 km<br>
+               <strong>⏰ETA:</strong> ~32 mins
+            </p>
+             <p><strong>Name:</strong> Ramanagara Fire Station <br>
+               <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+               <strong>Distance : </strong> 21.4 km<br>
+               <strong>⏰ETA:</strong> ~34 mins
             </p>
             <button onclick="logFireIncident()">Log Fire Call</button>
           </div>
           <div class="info-box">
             <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
             <ul>
-              <li><strong>St. John's Hospital</strong> - <a href='tel:18004250000'>1800-425-0000</a></li>
-              <li><strong>Narayana Multispeciality</strong> - <a href='tel:18003090000'>1800-309-0000</a></li>
-            </ul>
+              <p><strong>Name:</strong> RajaRajeshwari hospital, Kengeri  <br>
+               <strong>Phone:</strong> <a href='tel:08028437888'>080 2843 7888 </a><br>
+               <strong>Distance : </strong> 4 km<br>
+               <strong>⏰ETA:</strong> ~10mins
+            </p>
+             <p><strong>Name:</strong> Sdm Institute Of Ayurveda and Hospital, Kengeri  <br>
+               <strong>Phone:</strong> <a href='tel:09741897124'>09741897124</a><br>
+               <strong>Distance : </strong> 5.6 km<br>
+               <strong>⏰ETA:</strong> ~13mins
+            </p>
+              <p><strong>Name:</strong> Gleneagles bgs hospital, Kengeri  <br>
+               <strong>Phone:</strong> <a href='tel:8527306331'> 8527306331 </a><br>
+               <strong>Distance : </strong> 11.2 km<br>
+               <strong>⏰ETA:</strong> ~26 mins
+            </p>  
+
+
+              <p><strong>Name:</strong> Bangalore Hospital Kengeri <br>
+               <strong>Phone:</strong> <a href='tel:9090804680'> 9090804680 </a><br>
+               <strong>Distance : </strong> 11.4 km<br>
+               <strong>⏰ETA:</strong> ~27 mins
+            </p>            </ul>
           </div>
+          <div class="info-box">
+            <h3><i class="fas fa-poilceStation"></i> Nearby Police Station</h3>
+            <ul>
+              <p><strong>Name:</strong> Kumbalagudu Police Station <br>
+               <strong>Phone:</strong> <a href='tel:08028437599'>08028437599 </a><br>
+               <strong>Distance : </strong>6.6 km<br>
+               <strong>⏰ETA:</strong> ~13 mins
+            </p>
+              <p><strong>Name:</strong> Kengeri Police Station <br>
+               <strong>Phone:</strong> <a href='tel:08022942510'>08022942510 </a><br>
+               <strong>Distance : </strong> 8.7 km<br>
+               <strong>⏰ETA:</strong> ~17 mins
+            </p>
+            
+      
+           </ul>
+          </div>
+          
           <div class="info-box">
             <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
             <label>Call Time: <input type='time' id='callTime'></label><br>
@@ -394,20 +498,38 @@ function handleSubtype(value) {
     details.innerHTML = `
       <div class="info-box">
         <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
-        <p><strong>Name:</strong> Kengeri Fire Station<br>
-           <strong>Phone:</strong> <a href='tel:+918022851049'>+918022851049</a><br>
-           <strong>ETA:</strong> ~7 mins
-        </p>
+        <p><strong>Name:</strong> Nagarbhavi Fire Station <br>
+               <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+               <strong>Distance : </strong> 14.7 km<br>
+               <strong>⏰ETA:</strong> ~32 mins
+            </p>
+             <p><strong>Name:</strong> Ramanagara Fire Station <br>
+               <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+               <strong>Distance : </strong> 21.4 km<br>
+               <strong>⏰ETA:</strong> ~34 mins
+            </p>
         <button onclick="logFireIncident()">Log Fire Call</button>
       </div>
       <div class="info-box">
         <h3><i class="fas fa-hospital"></i> Nearby Hospitals</h3>
         <ul>
-          <li><strong>St. John's Hospital</strong> - <a href='tel:18004250000'>1800-425-0000</a></li>
-          <li><strong>Narayana Multispeciality</strong> - <a href='tel:18003090000'>1800-309-0000</a></li>
-          <li><strong>RajaRajeswari Medical Hospital </strong> - <a href='tel:08028437878'>080-2843 7878</a></li>
+              <p><strong>Name:</strong> RajaRajeshwari hospital, Kengeri  <br>
+               <strong>Phone:</strong> <a href='tel:08028437888'>080 2843 7888 </a><br>
+               <strong>Distance : </strong> 4 km<br>
+               <strong>⏰ETA:</strong> ~10mins
+            </p>
+              <p><strong>Name:</strong> Gleneagles bgs hospital, Kengeri  <br>
+               <strong>Phone:</strong> <a href='tel:8527306331'> 8527306331 </a><br>
+               <strong>Distance : </strong> 11.2 km<br>
+               <strong>⏰ETA:</strong> ~26 mins
+            </p>  
 
-        </ul>
+
+              <p><strong>Name:</strong> Bangalore Hospital Kengeri <br>
+               <strong>Phone:</strong> <a href='tel:9090804680'> 9090804680 </a><br>
+               <strong>Distance : </strong> 11.4 km<br>
+               <strong>⏰ETA:</strong> ~27 mins
+            </p>            </ul>
       </div>
       <div class="info-box">
         <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
@@ -431,17 +553,17 @@ function handleSubtype(value) {
          <img src="hostel_groundFloor - Copy.jpg" alt="Hostel Ground Floor Plan">
       </div>
       <div class='evacuation-plan'>
-        <h3>Ground Floor - Admin Block (coming soon)</h3>
-        <img src='' alt='Placeholder for Admin Ground Floor Plan'>
+        <h3>Ground Floor - Admin Block </h3>
+        <img src='adminBlockGround.jpg' alt='Placeholder for Admin Ground Floor Plan'>
       </div>
       <div class='evacuation-plan'>
-        <h3>First Floor - Admin Block (coming soon)</h3>
-        <img src='' alt='Placeholder for Admin First Floor Plan'>
+        <h3>First Floor - Admin Block</h3>
+        <img src='admionFirest.jpg' alt='Placeholder for Admin First Floor Plan'>
       </div>
       <div class='evacuation-plan'>
-        <h3>First Floor & Terrace - Hostel (coming soon)</h3>
+        <h3>First Floor & Terrace - Hostel</h3>
        
-        <img src="hostelTopFloor.jpg" alt="Hostel Top Floor Plan">
+        <img src="hostelFirest.jpg" alt="Hostel Top Floor Plan">
 
       </div>
     `;
