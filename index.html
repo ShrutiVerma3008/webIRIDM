@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IRIDM DM Assistant</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="path/to/your/chatbot-proxy.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
@@ -21,7 +25,7 @@
 </div> -->
 
 <div class="accordion-section">
-  <button class="accordion-btn">⚙️ Preparedness</button>
+  <button class="accordion-btn">⚙️ Navigation Bar</button>
   <div class="accordion-content" id="accordion-preparedness">
   <aside>
     <h2><i class="fas fa-sliders-h"></i> Disaster Controls</h2>
@@ -72,6 +76,7 @@
   <main>
     <section id="tabs">
       <button onclick="showTab('overview')">📘 Full DM Plan</button>
+      <button onclick="showTab('respoTeam')">🚨 Emergency Response Team Structure</button>
       <button onclick="showTab('prep')">⚙️ Preparedness</button>
       <button onclick="showTab('mitig')">🛡️ Mitigation</button>
       <button onclick="showTab('response')">🚒 Response</button>
@@ -83,19 +88,169 @@
       <div id="overview" class="tabPanel">
         <!-- Overview content -->
          <h2>IRIDM Disaster Management Plan Overview</h2>
-        <p>Content about DMP...</p>
-        <p>Disaster Management Plan – Indian Railways Institute of Disaster Management (IRIDM), Bengaluru.This tool integrates IRIDM's real-time Disaster Management Plan (DMP).
+        <!--<p>Content about DMP...</p>-->
+        <p>Disaster Management Plan – Indian Railways Institute of Disaster Management (IRIDM), Bengaluru.
+          The objective is to ensure the safety of personnel and assets, minimize operational disruption, and provide a coordinated emergency response. Additionally, it aims to enable swift recovery after incidents and build long-term resilience through continuous training.
+          <br>This tool integrates IRIDM's real-time Disaster Management Plan (DMP).
           Use the sidebar to read and navigate IRIDM's comprehensive plan or activate response workflows.
         </p>
         <img src="AdminBlock.jpg" alt="Admin Block">
-        <h2> Objectives</h2>
+        <!--<h2> Objectives</h2>
         <p>
           <li>Ensure personnel & asset safety</li>
           <li>Minimize operational disruption</li>
           <li>Provide coordinated emergency response</li>
           <li>Enable swift recovery</li>
-          <li>Build resilience via training</li></p>
+          <li>Build resilience via training</li></p>-->
+      
+      <!-- 📍 Campus Infrastructure Overview -->
+<div class="container my-5">
+  <h2 class="mb-4 text-center">🏫 Campus Infrastructure Overview</h2>
+
+  <!--<div class="row row-cols-1 row-cols-md-2 g-4">-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+
+    <!-- Smart Classrooms -->
+    <div class="col">
+      <div class="card border-primary shadow">
+        <div class="card-body">
+          <h5 class="card-title text-primary">🎓 Smart Classrooms</h5>
+          <p class="card-text">
+            • 5 fully air-conditioned (200 seats)<br>
+            • 3 more under construction<br>
+            • Final planned capacity: 320 seats
+          </p>
+        </div>
       </div>
+    </div>
+
+    <!-- Hostels -->
+    <div class="col">
+      <div class="card border-danger shadow">
+        <div class="card-body">
+          <h5 class="card-title text-danger">🏨 Hostels</h5>
+          <ul class="mb-0">
+            <li><strong>Tunga Block:</strong> 40 rooms, 100 beds (twin/triple sharing)</li>
+            <li><strong>Bhadra Block:</strong> 28 rooms (double occupancy)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kitchen -->
+    <div class="col">
+      <div class="card border-dark shadow">
+        <div class="card-body">
+          <h5 class="card-title text-dark">🍽 Kitchen & Dining</h5>
+          <ul class="mb-0">
+            <li>Kitchen capacity: 150 meals/shift</li>
+            <li>Dining hall: Seats 100 people</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Library -->
+    <div class="col">
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-info">📚 E-Library & Faculty Chambers</h5>
+          <p class="card-text">Dedicated spaces for learning and research</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seminar Room -->
+    <div class="col">
+      <div class="card border-secondary shadow">
+        <div class="card-body">
+          <h5 class="card-title text-secondary">🗣️ Model Room & Seminar Hall</h5>
+          <p class="card-text">Capacity: 40 persons</p>
+        </div>
+      </div>
+    </div>
+
+      <!-- VR Center -->
+    <div class="col">
+      <div class="card border-warning shadow">
+        <div class="card-body">
+          <h5 class="card-title text-warning">🕶️ Virtual Reality Centre</h5>
+          <p class="card-text">Under development</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auditorium -->
+    <div class="col">
+      <div class="card border-success shadow">
+        <div class="card-body">
+          <h5 class="card-title text-success">🎭 Auditorium</h5>
+          <p class="card-text">Seating for 100 people</p>
+        </div>
+      </div>
+    </div>
+
+  
+
+    
+
+   
+
+  </div>
+</div>
+</div>
+
+  <div id="respoTeam" class="tabPanel" style="display:none">
+  <div class="container mt-5">
+  <h2 class="mb-4 text-center">🚨 Emergency Response Team Structure</h2>
+  <div class="table-responsive shadow p-3 bg-white rounded">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Responsibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Director (Sr. Professor)</strong></td>
+          <td>Top-level emergency controller, coordinates with external responders (fire, ambulance, police).</td>
+        </tr>
+        <tr>
+          <td><strong>Joint Directors / Professors</strong></td>
+          <td>Internal section coordination and emergency control point leaders.</td>
+        </tr>
+        <tr>
+          <td><strong>Senior Instructors</strong></td>
+          <td>Area-wise incident commanders (e.g., Classrooms, Hostels, Forest Zones).</td>
+        </tr>
+        <tr>
+          <td><strong>Warden / Librarian</strong></td>
+          <td>Hostel evacuation & library lockdown procedures.</td>
+        </tr>
+        <tr>
+          <td><strong>Clerks & OS</strong></td>
+          <td>Maintain emergency logs, contact rosters, and support desks.</td>
+        </tr>
+        <tr>
+          <td><strong>Technical Staff (Tech-II)</strong></td>
+          <td>Handle substation response, tunnel inspection, and simulation zone safety.</td>
+        </tr>
+        <tr>
+          <td><strong>Assistants</strong></td>
+          <td>Act as floor marshals in hostels, mess, and admin buildings.</td>
+        </tr>
+        <tr>
+          <td><strong>Works Assistants</strong></td>
+          <td>Check and maintain sprinklers, hydrants, and fire alarms.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
       <div id="prep" class="tabPanel" style="display:none">
         <h2>Disaster Preparedness</h2>
         <div id="prepContent"></div>
@@ -186,20 +341,191 @@
 
       </div>
       </div>
-      <div id="mitig" class="tabPanel" style="display:none">
-        <!-- Mitigation content -->
-         <h2>🛡️ Mitigation Measures</h2>
-         <P>
-          <li>Infrastructure: Fire alarms, extinguishers, proper drainage</li>
-          <li>Redundancy: Power backup, water tanks, communication systems</li>
-          <li>Safety stock: First aid, water, food, emergency lighting</li>
-          <li>Compliance: Earthquake-resilient infrastructure standards</li></P>
+    <div id="mitig" class="tabPanel" style="display:none">
+  <div class="container px-3">
+    <h2 class="mt-4 mb-3 text-center">🛡️ Mitigation Measures for IRIDM Campus</h2>
+    <p class="mb-4">
+      To enhance the resilience of the Indian Railways Institute of Disaster Management (IRIDM) campus against fire and related hazards, the following mitigation strategies are implemented. All instructions are standardized in English for clarity across staff, trainees, and visitors.
+    </p>
+
+    <div class="accordion" id="mitigationAccordion">
+
+      <!-- 1. Dry Grass Management -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+            🌾 1. Dry Grass & Vegetation Management
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Weekly clearing of dry grass, leaves, and vegetation—especially in dry seasons.</li>
+              <li>No open burning or biomass near buildings (within 10 meters).</li>
+              <li>Use low-flammability plants near electrical or fuel zones.</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <!-- 2. Fire Communication System -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+            📢 2. Campus-wide Fire Communication & Alarm System
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <h6>Electronic Fire Alarm Network</h6>
+            <ul>
+              <li>Smoke/heat detectors in classrooms, dorms, labs, kitchens, etc.</li>
+              <li>Siren (≥110 dB), strobe lights, digital board alerts upon activation.</li>
+            </ul>
+            <h6>Manual Fire Alert System</h6>
+            <ul>
+              <li>Mechanical fire bells at key block entries and open areas.</li>
+              <li>Audible alarms up to 100 meters; operated by trained staff.</li>
+            </ul>
+            <h6>Portable Communication Devices</h6>
+            <ul>
+              <li>Megaphones and walkie-talkies in each block for coordination.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Fire Hydrants & Sprinklers -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+            🚿 3. Fire Hydrant & Sprinkler System
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Hydrants every 100m covering all zones (hostels, blocks).</li>
+              <li>Connected to pressurized pipeline & reliable water source.</li>
+              <li>Sprinklers in high-risk areas: bedrooms, labs, kitchens, auditorium, control rooms.</li>
+              <li>Hydrant location maps at each building entrance.</li>
+              <li><a href="IRIDM_Mitigation_Updated.pdf" target="_blank"> Fire Hydrant system and Auto Sprinkler system design and Deployment in IRIDM campus</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Fire Extinguishers -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+            🧯 4. Fire Extinguishers
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <table class="table table-bordered table-sm text-center">
+              <thead class="table-secondary">
+                <tr>
+                  <th>Type</th>
+                  <th>Location</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ABC Dry Powder</td>
+                  <td>Classrooms, Corridors</td>
+                  <td>General fires</td>
+                </tr>
+                <tr>
+                  <td>CO₂</td>
+                  <td>Electrical Panels, Server Rooms</td>
+                  <td>Electrical fires</td>
+                </tr>
+                <tr>
+                  <td>Foam</td>
+                  <td>Kitchens, Canteen</td>
+                  <td>Oil/liquid fires</td>
+                </tr>
+              </tbody>
+            </table>
+            <ul>
+              <li>Placement every 20 meters in key areas.</li>
+              <li>Mounted at 1.2m, clearly labeled, monthly checks mandatory.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Electrical Safety -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFive">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+            ⚡ 5. Electrical Safety Measures
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Install MCBs and ELCBs in all buildings.</li>
+              <li>Quarterly electrical audit.</li>
+              <li>Ban on unauthorized wiring or installations.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Signage & Access Control -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSix">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+            🚪 6. Signage & Access Control
+          </button>
+        </h2>
+        <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>“RESTRICTED AREA” signs for transformer rooms, fuel storage, etc.</li>
+              <li>Warning signs for fire, electric shock, and chemical hazards.</li>
+              <li>Clear assembly point markings in open zones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Evacuation Route -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSeven">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
+            🛣️ 7. Emergency Evacuation & Route Markings
+          </button>
+        </h2>
+        <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Glow-in-the-dark tape on walls/floors of all emergency paths.</li>
+              <li>Low-level lighting in staircases and exit routes.</li>
+              <li>Signs like “EXIT” must be visible in complete darkness and comply with <a href="https://law.resource.org/pub/in/bis/S02/is.9457.2005.pdf" target="_blank">IS 9457</a>.</li>
+              <li>Openings of the doors should be in outward direction.</li>
+              <li>Auditorium to include dedicated emergency exit signage.</li>
+              <li>Regular inspection of luminous materials for integrity.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- end accordion -->
+
+  </div>
+</div>
+
       <div id="response" class="tabPanel" style="display:none">
         <!-- Response content -->
          <h3>Incident Command System (ICS) led by Director</h3>
-         <p>
+         <p> <img src="hirecy.png" alt=" ICS Hierarchy">
           <ul>
+
               <li>Evacuation plans executed by Evacuation Team</li>
               <li>First Aid & medical assistance</li>
               <li>Firefighting via extinguishers & calling authorities</li>
@@ -207,16 +533,318 @@
               <li>Centralized communication via designated spokesperson</li>
             </ul>
             </p>
-            <h3>📊 Incident Command Structure</h3>
-            <ul>
+            <div class="container mt-5">
+  <h2 class="mb-4 text-center">🚨 Emergency Response Team Structure</h2>
+  <div class="table-responsive shadow p-3 bg-white rounded">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-dark text-center">
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Responsibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Director (Sr. Professor)</strong></td>
+          <td>Top-level emergency controller, coordinates with external responders (fire, ambulance, police).</td>
+        </tr>
+        <tr>
+          <td><strong>Joint Directors / Professors</strong></td>
+          <td>Internal section coordination and emergency control point leaders.</td>
+        </tr>
+        <tr>
+          <td><strong>Senior Instructors</strong></td>
+          <td>Area-wise incident commanders (e.g., Classrooms, Hostels, Forest Zones).</td>
+        </tr>
+        <tr>
+          <td><strong>Warden / Librarian</strong></td>
+          <td>Hostel evacuation & library lockdown procedures.</td>
+        </tr>
+        <tr>
+          <td><strong>Clerks & OS</strong></td>
+          <td>Maintain emergency logs, contact rosters, and support desks.</td>
+        </tr>
+        <tr>
+          <td><strong>Technical Staff (Tech-II)</strong></td>
+          <td>Handle substation response, tunnel inspection, and simulation zone safety.</td>
+        </tr>
+        <tr>
+          <td><strong>Assistants</strong></td>
+          <td>Act as floor marshals in hostels, mess, and admin buildings.</td>
+        </tr>
+        <tr>
+          <td><strong>Works Assistants</strong></td>
+          <td>Check and maintain sprinklers, hydrants, and fire alarms.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+           <!-- <h3>📊 Incident Command Structure</h3>
+        <ul>
+             Roles & Responsibilities
+
               <li><strong>Director</strong> – Incident Commander</li>
               <li><strong>Safety Officer</strong> – Monitors hazard conditions</li>
               <li><strong>Operations Chief</strong> – Directs firefighting & evacuation</li>
               <li><strong>Logistics Chief</strong> – Coordinates equipment, manpower</li>
               <li><strong>Information Officer</strong> – Communicates with public & media</li>
             </ul>
+          -->
+           
+      </div>
+     <!-- <div id="hrv" class="tabPanel" style="display:none;">
+        <h3>Hazard Risk & Vulnerability (HRV)</h3>
+        <div>
+          <h4> Overview</h4>
 
-            <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
+        </div>-->
+       <!-- <ul>
+          <li>Room 201 – 🔥 Fire Prone (Pantry)</li>
+          <li>Lab A1 – ⚡ Short Circuit Risk</li>
+          <li>Admin Basement – 🌊 Flood Prone</li>
+        </ul>
+      </div> -->
+
+      <div id="hrv" class="tabPanel" style="display:none;">
+  <div class="container px-3 py-4">
+    <h2 class="mb-4 text-center"> Hazard, Risk & Vulnerability Assessment – IRIDM Campus</h2>
+
+    <!-- Campus Overview -->
+    <div class="mb-4">
+      <h4>📍 Campus Overview</h4>
+      <ul>
+        <li><strong>Area Type:</strong> Multi-functional training facility (classrooms, hostels, simulation zones, substation)</li>
+        <li><strong>Structures:</strong> Admin Block, Auditorium, Tunga & Bhadra Hostels, Simulation Tunnels, Substation, Forest</li>
+        <li><strong>Occupancy:</strong> Students, faculty, staff, visitors (peak loads during drills/events)</li>
+        <li><strong>Topology:</strong><strong> ASK!! Low-lying with slopes, drainage-vulnerable</strong></li>
+      </ul>
+    </div>
+
+    <!-- Hazards Identified -->
+    <div class="mb-4">
+      <h4>🧱 Hazards Identified</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Hazard</th>
+              <th>Locations Affected</th>
+              <th>Trigger</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Fire (Electrical/Kitchen)</td><td>Auditorium, Hostels, Substation, Library</td><td>Overload, gas leak, negligence</td></tr>
+            <tr><td>2</td><td>Smoke & Panic</td><td>Auditorium, Library, Tunnels</td><td>Fire, equipment failure</td></tr>
+            <tr><td>3</td><td>Flooding / Waterlogging</td><td>Pond, tunnels, low tracks</td><td>Heavy rain, poor drainage</td></tr>
+            <tr><td>4</td><td>Trespassing / Intrusion</td><td>Perimeter, simulations</td><td>Gaps, night-time fencing</td></tr>
+            <tr><td>5</td><td>Structural Hazards</td><td>Under-construction, auditorium</td><td>Falling debris, design gap</td></tr>
+            <tr><td>6</td><td>Slips / Falls</td><td>Stairs, damp corridors</td><td>Monsoon, no non-slip mats</td></tr>
+            <tr><td>7</td><td>Electrical Shock</td><td>Substation, Labs, Classrooms</td><td>Wet walls, fault equipment</td></tr>
+            <tr><td>8</td><td>Animal Intrusion</td><td>Forest, hostel buffer zones</td><td>snakes, insects , strays</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+      <!-- Smart Classrooms -->
+    <div class="col">
+      <div class="card border-primary shadow">
+        <div class="card-body">
+          <h5 class="card-title text-primary"> Fire Prone Area</h5>
+          <p class="card-text">
+            • <a> </a>Admin Block<br>
+            • Hostel <br>
+            • Open Areas
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <!-- Hostels -->
+    <div class="col">
+      <div class="card border-danger shadow">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Trespassing Prone Area</h5>
+         <!-- <ul class="mb-0">
+            <li><strong>Tunga Block:</strong> 40 rooms, 100 beds (twin/triple sharing)</li>
+            <li><strong>Bhadra Block:</strong> 28 rooms (double occupancy)</li>
+          </ul>-->
+        </div>
+      </div>
+    </div>
+<br>
+    <!-- Kitchen -->
+    <div class="col">
+      <div class="card border-dark shadow">
+        <div class="card-body">
+          <h5 class="card-title text-dark">Electrical Harzard Prone Area</h5>
+          <ul class="mb-0">
+            <li>Admin Block</li>
+            <li>Hostel</li>
+            <li>Sub Station</li>
+            <li>Open Area</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+<br>
+    <!-- Construction -->
+    <div class="col">
+      <div class="card border-info shadow">
+        <div class="card-body">
+          <h5 class="card-title text-info">Construction Hazard</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+<br>
+    <!-- Flood Prone Area -->
+    <div class="col">
+      <div class="card border-secondary shadow">
+        <div class="card-body">
+          <h5 class="card-title text-secondary">Flood Prone Area</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+<br>
+      <!-- Animanl Intrusion  -->
+    <div class="col">
+      <div class="card border-warning shadow">
+        <div class="card-body">
+          <h5 class="card-title text-warning">Animal Intrusion</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+<br>
+    <!-- Stamped  -->
+    <div class="col">
+      <div class="card border-success shadow">
+        <div class="card-body">
+          <h5 class="card-title text-success">Stamped Prone Area</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+
+<br>
+
+    <!-- Risk Level Summary -->
+    <div class="mb-4">
+      <h4>📊 Risk Level Summary</h4>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Area</th>
+              <th>Hazard Type</th>
+              <th>Risk Level</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Auditorium</td>
+              <td>Fire, Panic, Smoke</td>
+              <td><span class="badge bg-danger">🔴 High</span></td>
+              <td>Overcrowding, only 1 exit, no sprinklers</td>
+            </tr>
+            <tr>
+              <td>Hostels</td>
+              <td>Fire, Electrical, Trespassing</td>
+              <td><span class="badge bg-warning text-dark">🟠 Medium</span></td>
+              <td>Night occupancy, open pathways</td>
+            </tr>
+            <tr>
+              <td>Substation</td>
+              <td>Fire, Electric shock, Waterlogging</td>
+              <td><span class="badge bg-danger">🔴 High</span></td>
+              <td>Vital asset, exposed area</td>
+            </tr>
+            <tr>
+              <td>Simulation Tunnel</td>
+              <td>Smoke, Collapse, Waterlogging</td>
+              <td><span class="badge bg-danger">🔴 High</span></td>
+              <td>Enclosed layout, deep structure</td>
+            </tr>
+            <tr>
+              <td>Forest/Dry Vegetation</td>
+              <td>Minor Fires, Animal Intrusion</td>
+              <td><span class="badge bg-warning text-dark">🟠 Medium</span></td>
+              <td>Seasonal hazard</td>
+            </tr>
+            <tr>
+              <td>Entry/Exit Zones</td>
+              <td>Trespassing, Panic Evacuation</td>
+              <td><span class="badge bg-info text-dark">🟡 Low–Medium</span></td>
+              <td>Needs stronger access control</td>
+            </tr>
+            <tr>
+              <td>Under Construction Areas</td>
+              <td>Collapse, Entry by mistake</td>
+              <td><span class="badge bg-warning text-dark">🟠 Medium</span></td>
+              <td>Unsupervised temporary structures</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Vulnerability Index -->
+    <div class="mb-4">
+      <h4>🧍 Vulnerability Index</h4>
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr>
+            <th>Population Group</th>
+            <th>Exposure</th>
+            <th>Vulnerability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Students (Hostels)</td><td>High (24/7)</td><td>High</td></tr>
+          <tr><td>Staff (Admin)</td><td>Medium</td><td>Medium</td></tr>
+          <tr><td>Trainers (Simulation)</td><td>High (at-risk zone)</td><td>High</td></tr>
+          <tr><td>Visitors (Auditorium)</td><td>Periodic</td><td>High during events</td></tr>
+          <tr><td>Workers (Construction)</td><td>Limited area</td><td>Medium</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Trespassing & Security -->
+    <div class="mb-3">
+      <h4>🚷 Trespassing & Security Concerns</h4>
+      <ul>
+        <li><strong>Access Points:</strong> Multiple open boundaries; some unmanned at night</li>
+        <li><strong>Perimeter Issues:</strong> Blind spots, limited CCTV, no motion detection</li>
+        <li><strong>Risks:</strong>
+          <ul>
+            <li>Unauthorized access to simulation zones</li>
+            <li>Hostel or forest intrusion after hours</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+
+      <div id="recovery" class="tabPanel" style="display:none">
+        <!-- Recovery content -->
+         <h3>Recovery and Rehabilitation </h3>
+         <P><li>Damage assessment and quick repairs</li>
+            <li>Shelter & care for affected individuals</li>
+            <li>Counseling and psychological support</li>
+            <li>Full restoration of services (power, water, IT)</li>
+            <li>Post-disaster review and plan updates</li>
+            <li>Government compensation facilitation (if applicable)</li></P>
+             <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
             <div id="damageTab" class="tabPanel" style="display: none;">
               <h3>Damage Assessment Details</h3>
               <ul>
@@ -225,19 +853,7 @@
                 <li>Casualty & Injury Reports</li>
                 <li>Estimated Recovery Cost</li>
               </ul>
-              <!--<h3>Record New Damage</h3>
-              <label>Type: <input type="text" id="damageType"></label>
-              <label>Cost: <input type="number" id="damageCost"></label>
-              <label>Replaced: 
-                <select id="damageReplaced">
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-              </label>
-              <button onclick="recordDamage()">Submit</button>
-              <button onclick="toggleDamageHistory()">📄 View History</button>
-              <div id="damageHistory" style="display:none;"></div>
-            -->
+             
              <h3>🧱 Structural Damage Evaluation</h3>
               <div class="form-block">
                 <label>Location: <input type="text" id="structLoc"></label>
@@ -264,61 +880,36 @@
 
               <div id="itHistory"></div>
 
-<!-- Add Casualty and Cost sections the same way -->
-        <h3>🤕 Casualty and Injury Reports </h3>
+        <h3>🤕 Casualty and Injury Reports</h3>
         <div class="form-block">
           <label>Person Name: <input type="text" id="casualtyName"></label>
           <label>Injury Severity: <input type="text" id="casualtySeverity"></label>
           <label>Details: <textarea id="casualtyNote"></textarea></label>
           <button onclick="saveCasualtyDamage()">Save</button>
-
           <button onclick="viewHistory('casual')">📄 View History</button>
           <button onclick="downloadCSV('casual')">⬇ Download CSV</button>
         </div>
 
-        <div id="casualtyData"></div>
+        <!-- 🆕 Add separate table container -->
+        <div id="casualtyHistory" class="mt-2"></div>
 
         <hr>
-
-        <h3>💹 Estimated Recovery Cost</h3>
-        <div class="form-block">
-          <label>Estimated Cost (INR): <input type="number" id="recoveryCost"></label>
-          <label>Affected Area: <input type="text" id="recoveryArea"></label>
-          <label>Remarks: <textarea id="recoveryRemarks"></textarea></label>
-          <button onclick="saveRecoveryLoss()">Save</button>
-          <button onclick="viewHistory('re_cost')">📄 View History</button>
-          <button onclick="downloadCSV('re_cost')">⬇ Download CSV</button>
-        </div>
-
-        <div id="recoveryData"></div>
-      </div>
-      </div>
-      <div id="hrv" class="tabPanel" style="display:none;">
-        <h3>Hazard Risk & Vulnerability (HRV) Map</h3>
-        <ul>
-          <li>Room 201 – 🔥 Fire Prone (Pantry)</li>
-          <li>Lab A1 – ⚡ Short Circuit Risk</li>
-          <li>Admin Basement – 🌊 Flood Prone</li>
-        </ul>
+      <h3>💹 Estimated Recovery Cost</h3>
+      <div class="form-block">
+        <label>Estimated Cost (INR): <input type="number" id="recoveryCost"></label>
+        <label>Affected Area: <input type="text" id="recoveryArea"></label>
+        <label>Remarks: <textarea id="recoveryRemarks"></textarea></label>
+        <button onclick="saveRecoveryLoss()">Save</button>
+        <button onclick="viewHistory('re_cost')">📄 View History</button>
+        <button onclick="downloadCSV('re_cost')">⬇ Download CSV</button>
       </div>
 
-      <div id="recovery" class="tabPanel" style="display:none">
-        <!-- Recovery content -->
-         <h3>Recovery and Rehabilitation </h3>
-         <P><li>Damage assessment and quick repairs</li>
-            <li>Shelter & care for affected individuals</li>
-            <li>Counseling and psychological support</li>
-            <li>Full restoration of services (power, water, IT)</li>
-            <li>Post-disaster review and plan updates</li>
-            <li>Government compensation facilitation (if applicable)</li></P>
-          <div class="ics-diagram">
-          <div class="node">Director<br><small>Fire & Emergency</small></div>
-          <div class="node-branch">
-            <div class="node">Operations Chief<br><small>Fire Response</small></div>
-            <div class="node">Logistics Chief<br><small>Equipment</small></div>
-            <div class="node">IT Head<br><small>Technical Failure</small></div>
-          </div>
-        </div>
+      <!-- 🆕 Add table container -->
+      <div id="recoveryHistory" class="mt-2"></div>
+
+      </div>
+ 
+        <p>     <br>   </p>
         <button onclick="downloadAllCSVs()">⬇ Download CSV information of Damage Assessment and quicks repairs</button>
           </div>
     </section>
@@ -675,6 +1266,26 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+<!--------------------------------------- CHAT bOT ------------------------------------------>
+<!-- Floating Chatbot Icon
+<div id="chatbotIcon" onclick="toggleChatPopup()">🤖</div>
+
+<!-- Chatbot Popup Box 
+<div id="chatPopup">
+  <div id="chatHeader">
+    IRIDM Assistant
+    <span style="cursor:pointer;" onclick="toggleChatPopup()">×</span>
+  </div>
+  <div id="chatBody">
+    <div id="chatMessages"></div>
+    <div id="chatInputArea">
+      <input type="text" id="chatInput" placeholder="Ask something..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+-->
+ <!--<script src="chatbot-proxy.js"></script>-->
 
   <script src="app.js"></script>
 </body>

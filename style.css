@@ -28,7 +28,7 @@ header {
 .accordion-btn {
   width: 100%;
   text-align: left;
-  background: #eee;
+  background: #9fc2ef;
   padding: 10px;
   font-weight: bold;
   border: none;
@@ -265,3 +265,50 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+
+/* try cards
+/* Infrastructure Section Styling */
+  .container h2 {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    position: flex;
+  }
+
+  .card {
+    border-radius: 1rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .card-text, .card ul {
+    font-size: 1rem;
+    color: #34495e;
+  }
+
+  .card ul {
+    padding-left: 1rem;
+  }
+
+  .card ul li {
+    margin-bottom: 0.25rem;
+  }
+
+  @media (max-width: 576px) {
+    .card-title {
+      font-size: 1.1rem;
+    }
+    .card-text, .card ul {
+      font-size: 0.95rem;
+    }
+  }

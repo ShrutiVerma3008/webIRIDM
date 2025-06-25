@@ -1,0 +1,1 @@
+pip install flask flask-cors langchain faiss-cpu sentence-transformers python-dotenv langchain-groq
