@@ -338,9 +338,18 @@ function clearStorage(key) {
 
 // Handle tab switching
 function showTab(tabId) {
+  // Hide all panels
   document.querySelectorAll('.tabPanel').forEach(panel => panel.style.display = 'none');
+  // Remove active class from all tab buttons
+  document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('active-tab'));
+  // Show selected panel
   document.getElementById(tabId).style.display = 'block';
+  // Highlight active tab
+  const activeButton = Array.from(document.querySelectorAll('#tabs button'))
+    .find(btn => btn.getAttribute('onclick').includes(tabId));
+  if (activeButton) activeButton.classList.add('active-tab');
 }
+
 
 function toggleInfoBox(id) {
   const tab = document.getElementById(id);

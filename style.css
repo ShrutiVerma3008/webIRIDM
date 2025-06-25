@@ -78,12 +78,14 @@ aside {
   padding: 1.5rem;
   width: 260px;
   border-right: 1px solid #ddd;
-  height: 100vh;
+  height:calc(100vh - 180px);
   position: absolute;
   top: 180px;
   left: 0;
   overflow-y: auto;
   box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
   z-index: 10;
 }
 
@@ -312,3 +314,31 @@ button:hover {
       font-size: 0.95rem;
     }
   }
+
+  #tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+#tabs button {
+  margin: 0.2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+#tabs button:hover {
+  background-color: #125ea5;
+  transform: translateY(-1px);
+}
+
+#tabs button.active-tab {
+  background-color: #14d652;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
