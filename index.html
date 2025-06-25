@@ -103,17 +103,41 @@
           <li>Enable swift recovery</li>
           <li>Build resilience via training</li></p>-->
       
+
+          <!-- images section -->
+           <!-- 🔄 Floating Image Strip with Modal -->
+<div class="floating-slider-wrapper">
+  <div class="floating-slider" id="floatingSlider">
+    <img src="AdminBlock.jpg" alt="Image 1" onclick="openImageModal(this)">
+
+    <img src="static/images/classroom/clas2.jpg" alt="Image 1" onclick="openImageModal(this)">
+    <img src="static/images/classroom/corridore.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/classroom/lib.jpg" alt="Image 3" onclick="openImageModal(this)">
+    <img src="static/images/classroom/Officer.jpg" alt="Image 4" onclick="openImageModal(this)">
+    <img src="static/images/fire/classrom1.jpg alt="Image 5" onclick="openImageModal(this)">
+  </div>
+  <button class="slide-btn left" onclick="scrollSlider(-1)">&#10094;</button>
+  <button class="slide-btn right" onclick="scrollSlider(1)">&#10095;</button>
+</div>
+
+<!-- Modal Viewer for Slider -->
+<div id="imageModal" class="image-modal">
+  <span class="close" onclick="closeImageModal()">&times;</span>
+  <img class="modal-img" id="modalSliderImg">
+</div>
+
       <!-- 📍 Campus Infrastructure Overview -->
-<div class="container my-5">
+
+<!-- <div class="container my-5">
   <h2 class="mb-4 text-center">🏫 Campus Infrastructure Overview</h2>
 
-  <!--<div class="row row-cols-1 row-cols-md-2 g-4">-->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div class="row row-cols-1 row-cols-md-2 g-4">-->
+    <!--<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> -->
 
 
-    <!-- Smart Classrooms -->
+    <!-- Smart Classrooms
     <div class="col">
-      <div class="card border-primary shadow">
+      <div class="card border-primary shadow" onclick="openImageGallery('')">
         <div class="card-body">
           <h5 class="card-title text-primary">🎓 Smart Classrooms</h5>
           <p class="card-text">
@@ -126,7 +150,7 @@
     </div>
 
     <!-- Hostels -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-danger shadow">
         <div class="card-body">
           <h5 class="card-title text-danger">🏨 Hostels</h5>
@@ -136,10 +160,10 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Kitchen -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-dark shadow">
         <div class="card-body">
           <h5 class="card-title text-dark">🍽 Kitchen & Dining</h5>
@@ -149,31 +173,112 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Library -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-info shadow">
         <div class="card-body">
           <h5 class="card-title text-info">📚 E-Library & Faculty Chambers</h5>
           <p class="card-text">Dedicated spaces for learning and research</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Seminar Room -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-secondary shadow">
         <div class="card-body">
           <h5 class="card-title text-secondary">🗣️ Model Room & Seminar Hall</h5>
           <p class="card-text">Capacity: 40 persons</p>
         </div>
       </div>
-    </div>
+    </div> -->
 
       <!-- VR Center -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-warning shadow">
+        <div class="card-body">
+          <h5 class="card-title text-warning">🕶️ Virtual Reality Centre</h5>
+          <p class="card-text">Under development</p>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Auditorium -->
+    <!-- <div class="col">
+      <div class="card border-success shadow">
+        <div class="card-body">
+          <h5 class="card-title text-success">🎭 Auditorium</h5>
+          <p class="card-text">Seating for 100 people</p>
+        </div>
+      </div>
+    </div> -->
+   
+    <div class="container my-5">
+  <h2 class="mb-4 text-center">🏫 Campus Infrastructure Overview</h2>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- Smart Classrooms -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-primary shadow flex-fill" onclick="openInfraGallery('Smart Classrooms', 'Fully air-conditioned digital classrooms with smart boards and seating.', ['static/images/classroom1.jpg', 'static/images/classroom2.jpg'])">
+        <div class="card-body">
+          <h5 class="card-title text-primary">🎓 Smart Classrooms</h5>
+          <p class="card-text">• 5 fully air-conditioned (200 seats)<br>• 3 under construction<br>• Final capacity: 320 seats</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hostels -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-danger shadow flex-fill" onclick="openInfraGallery('Hostels', 'Tunga & Bhadra blocks with shared rooms and facilities.', ['static/images/hostel_groundFloor.jpg', 'static/images/hostelTopFloor.jpg'])">
+        <div class="card-body">
+          <h5 class="card-title text-danger">🏨 Hostels</h5>
+          <ul class="mb-0">
+            <li><strong>Tunga Block:</strong> 40 rooms, 100 beds</li>
+            <li><strong>Bhadra Block:</strong> 28 rooms</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kitchen & Dining -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-dark shadow flex-fill" onclick="openInfraGallery('Kitchen & Dining', 'Catering for 150 meals per shift with seated dining.', ['static/images/kitchen1.jpg', 'static/images/dining1.jpg'])">
+        <div class="card-body">
+          <h5 class="card-title text-dark">🍽 Kitchen & Dining</h5>
+          <ul class="mb-0">
+            <li>Kitchen: 150 meals/shift</li>
+            <li>Dining: 100 seats</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-Library -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-info shadow flex-fill" onclick="openInfraGallery('E-Library & Faculty Chambers', 'Learning & research rooms.', ['static/images/library1.jpg'])">
+        <div class="card-body">
+          <h5 class="card-title text-info">📚 E-Library & Faculty Chambers</h5>
+          <p class="card-text">Dedicated spaces for study and academic discussions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seminar Hall -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-secondary shadow flex-fill" onclick="openInfraGallery('Seminar Hall', 'Room for seminars, guest lectures.', ['static/images/seminar1.jpg'])">
+        <div class="card-body">
+          <h5 class="card-title text-secondary">🗣️ Model Room </h5>
+          <p class="card-text">Capacity: 40 persons</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VR Centre -->
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-warning shadow flex-fill" onclick="openInfraGallery('Virtual Reality Centre', 'VR-based innovation centre under development.', ['static/images/vr1.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-warning">🕶️ Virtual Reality Centre</h5>
           <p class="card-text">Under development</p>
@@ -182,8 +287,8 @@
     </div>
 
     <!-- Auditorium -->
-    <div class="col">
-      <div class="card border-success shadow">
+    <div class="col-12 col-sm-6 col-lg-4 d-flex">
+      <div class="card border-success shadow flex-fill" onclick="openInfraGallery('Auditorium', 'For events, performances, guest talks.', ['static/images/auditorium1.jpg', 'static/images/auditorium2.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-success">🎭 Auditorium</h5>
           <p class="card-text">Seating for 100 people</p>
@@ -191,11 +296,10 @@
       </div>
     </div>
 
-  
+  </div>
+</div>
 
-    
 
-   
 
   </div>
 </div>
@@ -207,10 +311,10 @@
           <ul>
 
               <li>Evacuation plans executed by Evacuation Team</li>
-              <li>First Aid & medical assistance</li>
-              <li>Firefighting via extinguishers & calling authorities</li>
+              <li>First Aid & Medical assistance</li>
+              <li>Fire-Fighting via extinguishers & State Fire Services</li>
               <li>Search & Rescue to ensure no one is left behind</li>
-              <li>Centralized communication via designated spokesperson</li>
+              <li>Centralized Communication via Designated Spokesperson</li>
             </ul>
             </p>
 
@@ -227,35 +331,35 @@
       <tbody>
         <tr>
           <td><strong>Director (Sr. Professor)</strong></td>
-          <td>Top-level emergency controller, coordinates with external responders (fire, ambulance, police).</td>
+          <td>Top-level Emergency Controller, Coordinates with External Responders (fire, ambulance, police).</td>
         </tr>
         <tr>
           <td><strong>Joint Directors / Professors</strong></td>
-          <td>Internal section coordination and emergency control point leaders.</td>
+          <td>Internal Section Coordination and Emergency Control Point Leaders.</td>
         </tr>
         <tr>
           <td><strong>Senior Instructors</strong></td>
-          <td>Area-wise incident commanders (e.g., Classrooms, Hostels, Forest Zones).</td>
+          <td>Area-Wise Incident Commanders (e.g., Admin Block(Ground Floor, First Floor),Classrooms, Tunga Block,Bhadra Block, Miawalki Forest,Artificial Lake).</td>
         </tr>
         <tr>
           <td><strong>Warden / Librarian</strong></td>
-          <td>Hostel evacuation & library lockdown procedures.</td>
+          <td>Hostel Evacuation & Library Lockdown Procedures.</td>
         </tr>
         <tr>
           <td><strong>Clerks & OS</strong></td>
-          <td>Maintain emergency logs, contact rosters, and support desks.</td>
+          <td>Maintain Emergency Logs, Contact Rosters, and Support Desks.</td>
         </tr>
         <tr>
-          <td><strong>Technical Staff (Tech-II)</strong></td>
-          <td>Handle substation response, tunnel inspection, and simulation zone safety.</td>
+          <td><strong>Technical Staff</strong></td>
+          <td>Handle 11kV Substation Response, Tunnel Inspection, and Simulation/Demonstration Zone Safety.</td>
         </tr>
         <tr>
           <td><strong>Assistants</strong></td>
-          <td>Act as floor marshals in hostels, mess, and admin buildings.</td>
+          <td>Act as Floor Marshals in Hostels, Mess, and Admin Buildings.</td>
         </tr>
         <tr>
           <td><strong>Works Assistants</strong></td>
-          <td>Check and maintain sprinklers, hydrants, and fire alarms.</td>
+          <td>Periodic Check and Maintain Sprinklers, Hydrants, and Fire Alarms.</td>
         </tr>
       </tbody>
     </table>
@@ -269,21 +373,18 @@
         <div id="fireDetails"><div class="info-box">
           <h2> Safety Area Information : </h2>
                   <div class="info-box">
-                  <h3><i class="fas fa-poilceStation"></i> Nearby Police Station</h3>
-                  <ul>
-                    <p><strong>Name:</strong> Kumbalagudu Police Station <br>
-                    <strong>Phone:</strong> <a href='tel:08028437599'>08028437599 </a><br>
-                    <strong>Distance : </strong>6.6 km<br>
-                    <strong>⏰ETA:</strong> ~13 mins
+                  <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
+                  <p><strong>Name:</strong> Nagarbhavi Fire Station <br>
+                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+                    <strong>Distance : </strong> 14.7 km<br>
+                    <strong>⏰ETA:</strong> ~32 mins
                   </p>
-                    <p><strong>Name:</strong> Kengeri Police Station <br>
-                    <strong>Phone:</strong> <a href='tel:08022942510'>08022942510 </a><br>
-                    <strong>Distance : </strong> 8.7 km<br>
-                    <strong>⏰ETA:</strong> ~17 mins
+                  <p><strong>Name:</strong> Ramanagara Fire Station <br>
+                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
+                    <strong>Distance : </strong> 21.4 km<br>
+                    <strong>⏰ETA:</strong> ~34 mins
                   </p>
-                  
-            
-                </ul>
+                  <button onclick="logFireIncident()">Log Fire Call</button>
                 </div>
               
                 <div class="info-box">
@@ -312,25 +413,45 @@
                     <strong>⏰ETA:</strong> ~27 mins
                   </p>            </ul>
                 </div>
-                  <div class="info-box">
-                  <h3><i class="fas fa-fire-extinguisher"></i> Nearest Fire Station</h3>
-                  <p><strong>Name:</strong> Nagarbhavi Fire Station <br>
-                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
-                    <strong>Distance : </strong> 14.7 km<br>
-                    <strong>⏰ETA:</strong> ~32 mins
+                
+                       <div class="info-box">
+                  <h3><i class="fas fa-poilceStation"></i> Nearby Police Station</h3>
+                  <ul>
+                    <p><strong>Name:</strong> Kumbalagudu Police Station <br>
+                    <strong>Phone:</strong> <a href='tel:08028437599'>08028437599 </a><br>
+                    <strong>Distance : </strong>6.6 km<br>
+                    <strong>⏰ETA:</strong> ~13 mins
                   </p>
-                  <p><strong>Name:</strong> Ramanagara Fire Station <br>
-                    <strong>Phone:</strong> <a href='tel:101'> 101 </a><br>
-                    <strong>Distance : </strong> 21.4 km<br>
-                    <strong>⏰ETA:</strong> ~34 mins
+                    <p><strong>Name:</strong> Kengeri Police Station <br>
+                    <strong>Phone:</strong> <a href='tel:08022942510'>08022942510 </a><br>
+                    <strong>Distance : </strong> 8.7 km<br>
+                    <strong>⏰ETA:</strong> ~17 mins
                   </p>
-                  <button onclick="logFireIncident()">Log Fire Call</button>
-                </div>
+                  
             
+                </ul>
+                </div>
+                
+                <div class="info-box">
+                  <h3><i class="fas fa-animal"></i> Near by Wrangler  </h3>
+                  <ul>
+                    <p><strong>Snake Catcher</strong><br>
+                    <strong>Contact Details:</strong> <a href='tel:9964917651'>9964917651</a><br>
+                    <!--<strong>Distance : </strong> 4 km<br>
+                    <strong>⏰ETA:</strong> ~10mins-->
+                  </p>
+                 </ul>
+                </div>
+
+                <br>
                 <h3><i class="fas fa-fire"></i> Fire Safety Equipments at IRIDM :</h3>
                 <p><strong>Fire extinguisher ABC type:</strong> 8 , one in each class</p>
                 <p><strong>Fire Emergency Exit:</strong> 2 </p>
                 <p><strong>Trained Staff:</strong> 8 firefighters, 1 supervisor</p>
+
+                <h3>📹CCTV Camera details: </h3>
+                <p><strong>Hostel block</strong> - 32<br><strong>Admin block</strong> - 27</p>
+
               </div>
               </div>
 
@@ -358,8 +479,9 @@
     <h2 class="mt-4 mb-3 text-center">🛡️ Mitigation Measures for IRIDM Campus</h2>
     <p class="mb-4">
       To enhance the resilience of the Indian Railways Institute of Disaster Management (IRIDM) campus against fire and related hazards, the following mitigation strategies are implemented. All instructions are standardized in English for clarity across staff, trainees, and visitors.
+       <a href="https://law.resource.org/pub/in/bis/S03/is.3844.1989.html" target="_blank"> All the designs are reffered from this:</a>
     </p>
-
+    
     <div class="accordion" id="mitigationAccordion">
 
       <!-- 1. Dry Grass Management -->
@@ -372,9 +494,10 @@
         <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#mitigationAccordion">
           <div class="accordion-body">
             <ul>
-              <li>Weekly clearing of dry grass, leaves, and vegetation—especially in dry seasons.</li>
-              <li>No open burning or biomass near buildings (within 10 meters).</li>
-              <li>Use low-flammability plants near electrical or fuel zones.</li>
+              <li>The IRIDM campus has significant open areas and landscaped zones. To reduce fire risk:
+                  Weekly clearing of dry grass, leaves, and vegetation shall be conducted, especially during the summer and dry months.</li>
+              <li>Landscaping around vulnerable zones (11kV Substation,Hostel,Admin Building etc.) shall use low-flammability plant species.</li>
+              <li>No open burning or accumulation of dry biomass shall be allowed within 10 meters of any building.</li>
             </ul>
           </div>
         </div>
@@ -391,12 +514,12 @@
           <div class="accordion-body">
             <h6>Electronic Fire Alarm Network</h6>
             <ul>
-              <li>Smoke/heat detectors in classrooms, dorms, labs, kitchens, etc.</li>
-              <li>Siren (≥110 dB), strobe lights, digital board alerts upon activation.</li>
+              <li>Smoke/heat detectors in Kitchen,Classrooms,Hostel,Model Rooms,Corridors,Faculty Rooms, etc.</li>
+              <li>Siren (≥110 dB), Strobe lights, Digital Board Alerts upon Activation.</li>
             </ul>
             <h6>Manual Fire Alert System</h6>
             <ul>
-              <li>Mechanical fire bells at key block entries and open areas.</li>
+              <li>Mechanical Fire Bells/Fire Sirens at key areas and open areas.</li>
               <li>Audible alarms up to 100 meters; operated by trained staff.</li>
             </ul>
             <h6>Portable Communication Devices</h6>
@@ -417,10 +540,10 @@
         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
           <div class="accordion-body">
             <ul>
-              <li>Hydrants every 100m covering all zones (hostels, blocks).</li>
+              <li>Hydrants every 100m covering all zones (Kitchen,Hostel,etc.).</li>
               <li>Connected to pressurized pipeline & reliable water source.</li>
-              <li>Sprinklers in high-risk areas: kitchens, auditorium, control rooms.</li>
-              <li>Hydrant location maps at each building entrance.</li>
+              <li>Sprinklers in High-Risk Areas: kitchens,Corridors,Auditorium,DG Room.</li>
+              <li>Hydrant Location Maps at each building entrance.</li>
               <li><a href="IRIDM_Mitigation_Updated.pdf" target="_blank"> Fire Hydrant system and Auto Sprinkler system design and Deployment in IRIDM campus</a></li>
             </ul>
           </div>
@@ -447,17 +570,17 @@
               <tbody>
                 <tr>
                   <td>ABC Dry Powder</td>
-                  <td>Classrooms, Corridors</td>
+                  <td>Classrooms, Corridors,Hostel,model Rooms,Faculty Room,Auditorium,Library,Conference hall</td>
                   <td>General fires</td>
                 </tr>
                 <tr>
                   <td>CO₂</td>
-                  <td>Electrical Panels, Server Rooms</td>
+                  <td>Electrical Panels, Outside Shaft Space door,SNT Room,</td>
                   <td>Electrical fires</td>
                 </tr>
                 <tr>
                   <td>Foam</td>
-                  <td>Kitchens, Canteen</td>
+                  <td>Kitchens, DG Room</td>
                   <td>Oil/liquid fires</td>
                 </tr>
               </tbody>
@@ -465,6 +588,7 @@
             <ul>
               <li>Placement every 20 meters in key areas.</li>
               <li>Mounted at 1.2m, clearly labeled, monthly checks mandatory.</li>
+              <li><a href = "">Present Data Regarding Fire Extinguishers at IRIDM Campus</a></li>
             </ul>
           </div>
         </div>
@@ -498,9 +622,9 @@
         <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#mitigationAccordion">
           <div class="accordion-body">
             <ul>
-              <li>“RESTRICTED AREA” signs for transformer rooms, fuel storage, etc.</li>
-              <li>Warning signs for fire, electric shock, and chemical hazards.</li>
-              <li>Clear assembly point markings in open zones.</li>
+              <li>“RESTRICTED AREA” signs for 11kV Substation,Generators,etc.</li>
+              <li>Warning signs for Fire, Electric Shock,Chemical hazards,Potenial site for Animal,Reptile & Insects Encounter.</li>
+              <li>Clear Assembly Point Markings in Open Zones.</li>
             </ul>
           </div>
         </div>
@@ -629,13 +753,13 @@
         <li><strong>Area Type:</strong> Multi-functional training facility (classrooms, hostels, simulation zones, substation)</li>
         <li><strong>Structures:</strong> Admin Block, Auditorium, Tunga & Bhadra Hostels, Simulation Tunnels, Substation, Forest</li>
         <li><strong>Occupancy:</strong> Students, faculty, staff, visitors (peak loads during drills/events)</li>
-        <li><strong>Topology:</strong><strong> ASK!! Low-lying with slopes, drainage-vulnerable</strong></li>
+        <li><strong>Topology:</strong> Low-lying with slopes, drainage-vulnerable</></li>
       </ul>
     </div>
 
     <!-- Hazards Identified -->
     <div class="mb-4">
-      <h4>🧱 Hazards Identified</h4>
+      <h4>Hazards Identified</h4>
       <div class="table-responsive">
         <table class="table table-bordered table-sm">
           <thead class="table-light">
@@ -647,26 +771,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td>Fire (Electrical/Kitchen)</td><td>Auditorium, Hostels, Substation, Library</td><td>Overload, gas leak, negligence</td></tr>
-            <tr><td>2</td><td>Smoke & Panic</td><td>Auditorium, Library, Tunnels</td><td>Fire, equipment failure</td></tr>
-            <tr><td>3</td><td>Flooding / Waterlogging</td><td>Pond, tunnels, low tracks</td><td>Heavy rain, poor drainage</td></tr>
-            <tr><td>4</td><td>Trespassing / Intrusion</td><td>Perimeter, simulations</td><td>Gaps, night-time fencing</td></tr>
-            <tr><td>5</td><td>Structural Hazards</td><td>Under-construction, auditorium</td><td>Falling debris, design gap</td></tr>
-            <tr><td>6</td><td>Slips / Falls</td><td>Stairs, damp corridors</td><td>Monsoon, no non-slip mats</td></tr>
-            <tr><td>7</td><td>Electrical Shock</td><td>Substation, Labs, Classrooms</td><td>Wet walls, fault equipment</td></tr>
-            <tr><td>8</td><td>Animal Intrusion</td><td>Forest, hostel buffer zones</td><td>snakes, insects , strays</td></tr>
+            <tr><td>1</td><td>Fire</td><td>Kitchen,Auditorium,Hostels,Substation,Library</td><td>Overload, gas leak, negligence</td></tr>
+            <tr><td>2</td><td>Smoke & Panic</td><td>Auditorium, Library, Tunnels,Miawalki Forest,Artificial Lake site</td><td>Fire, equipment failure,Misinformation</td></tr>
+            <tr><td>3</td><td>Flooding / Waterlogging</td><td>artificial Lake, tunnels, low tracks</td><td>Heavy rain, poor drainage</td></tr>
+            <tr><td>4</td><td>Trespassing / Intrusion</td><td>Boundaries of IRIDM, Demonstration/Simulations Site</td><td>Gaps,Lack of proper fencing</td></tr>
+            <tr><td>5</td><td>Structural Hazards</td><td>Under-construction Buildings, Auditorium</td><td>Falling debris, design gap</td></tr>
+            <tr><td>6</td><td>Slips / Falls</td><td>Stairs, damp corridors, Washrooms</td><td>Monsoon, no non-slip mats</td></tr>
+            <tr><td>7</td><td>Electrical Shock</td><td>11 kV Substation, Model Rooms,Classrooms</td><td>Wet walls, fault equipment</td></tr>
+            <tr><td>8</td><td>Animal Intrusion</td><td>Miawalki Forest, Hostel Buffer zones,Vegetation area.</td><td>snakes, insects , strays</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    
-      <!-- Smart Classrooms -->
+<!--    
+      Smart Classrooms 
     <div class="col">
       <div class="card border-primary shadow">
         <div class="card-body">
           <h5 class="card-title text-primary"> Fire Prone Area</h5>
           <p class="card-text">
-            • <a> </a>Admin Block<br>
+            • <a> </a>Admin Building<br>
             • Hostel <br>
             • Open Areas
           </p>
@@ -675,20 +799,20 @@
     </div>
     <br>
 
-    <!-- Hostels -->
+    
     <div class="col">
       <div class="card border-danger shadow">
         <div class="card-body">
           <h5 class="card-title text-danger">Trespassing Prone Area</h5>
-         <!-- <ul class="mb-0">
+        <ul class="mb-0">
             <li><strong>Tunga Block:</strong> 40 rooms, 100 beds (twin/triple sharing)</li>
             <li><strong>Bhadra Block:</strong> 28 rooms (double occupancy)</li>
-          </ul>-->
+          </ul>
         </div>
       </div>
     </div>
 <br>
-    <!-- Kitchen -->
+ 
     <div class="col">
       <div class="card border-dark shadow">
         <div class="card-body">
@@ -696,25 +820,25 @@
           <ul class="mb-0">
             <li>Admin Block</li>
             <li>Hostel</li>
-            <li>Sub Station</li>
+            <li>11 kV Sub Station</li>
             <li>Open Area</li>
           </ul>
         </div>
       </div>
     </div>
 <br>
-    <!-- Construction -->
+    Construction
     <div class="col">
       <div class="card border-info shadow">
         <div class="card-body">
-          <h5 class="card-title text-info">Construction Hazard</h5>
+          <h5 class="card-title text-info">Construction Building Hazard</h5>
           <p class="card-text"></p>
         </div>
       </div>
     </div>
 <br>
-    <!-- Flood Prone Area -->
-    <div class="col">
+    Flood Prone Area -->
+    <!-- <div class="col">
       <div class="card border-secondary shadow">
         <div class="card-body">
           <h5 class="card-title text-secondary">Flood Prone Area</h5>
@@ -722,9 +846,9 @@
         </div>
       </div>
     </div>
-<br>
+<br> -->
       <!-- Animanl Intrusion  -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-warning shadow">
         <div class="card-body">
           <h5 class="card-title text-warning">Animal Intrusion</h5>
@@ -732,18 +856,87 @@
         </div>
       </div>
     </div>
-<br>
+<br> -->
     <!-- Stamped  -->
-    <div class="col">
+    <!-- <div class="col">
       <div class="card border-success shadow">
         <div class="card-body">
           <h5 class="card-title text-success">Stamped Prone Area</h5>
           <p class="card-text"></p>
         </div>
       </div>
+    </div> -->
+
+<!-- Auto-Rotating Hazard Gallery -->
+<h3 class="mb-4">⚠️ Hazard Gallery</h3>
+<div class="hazard-carousel-wrapper">
+  <div class="hazard-carousel" id="hazardCarousel">
+
+    <!-- ELECTRICAL -->
+    <div class="hazard-card red" onclick="showHazardGallery(
+      'Electrical Hazard',
+      'Admin Block, Hostel, 11kV Sub Station',
+      ['static/images/elcb.jpg']
+    )">
+      <h4>Electrical Hazard</h4>
+      <p>Admin Block, Hostel, Sub Station</p>
     </div>
 
-<br>
+    <!-- FLOOD -->
+    <div class="hazard-card gray" onclick="showHazardGallery(
+      'Flood Prone Area',
+      'Drainage failure, tunnels, low-lying zones',
+      ['static/images/flood1.jpg', 'static/images/flood2.jpg']
+    )">
+      <h4>Flood Risk</h4>
+      <p>Heavy rain & drainage failure zones</p>
+    </div>
+
+    <!-- ANIMAL -->
+    <div class="hazard-card yellow" onclick="showHazardGallery(
+      'Animal Intrusion',
+      'Hostel rear, Forest edge',
+      ['static/images/animal1.jpg']
+    )">
+      <h4>Animal Intrusion</h4>
+      <p>Snakes, insects, strays</p>
+    </div>
+
+    <!-- CONSTRUCTION -->
+    <div class="hazard-card blue" onclick="showHazardGallery(
+      'Construction Hazard',
+      'Open construction zones',
+      ['static/images/construction1.jpg']
+    )">
+      <h4>Construction Hazard</h4>
+      <p>Falling material, restricted entry</p>
+    </div>
+
+    <!-- STAMPED -->
+    <div class="hazard-card green" onclick="showHazardGallery(
+      'Stamped Area',
+      'Auditorium, Entry Gates',
+      ['static/images/stamped1.jpg']
+    )">
+      <h4>Stamped Prone Area</h4>
+      <p>Risk during crowd movement</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL for Multiple Images -->
+<div id="hazardModal" class="hazard-modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <div id="modalImages" class="modal-gallery"></div>
+  </div>
+</div>
+
+
+
 
     <!-- Risk Level Summary -->
     <div class="mb-4">
@@ -763,16 +956,16 @@
               <td>Auditorium</td>
               <td>Fire, Panic, Smoke</td>
               <td><span class="badge bg-danger">🔴 High</span></td>
-              <td>Overcrowding, only 1 exit, no sprinklers</td>
+              <td>Overcrowding, only 1 exit point, no sprinklers</td>
             </tr>
             <tr>
               <td>Hostels</td>
               <td>Fire, Electrical, Trespassing</td>
-              <td><span class="badge bg-warning text-dark">🟠 Medium</span></td>
-              <td>Night occupancy, open pathways</td>
+              <td><span class="badge bg-danger">🔴 High</span></td>
+              <td>Overcrowding,Night Occupancy, Open Pathways</td>
             </tr>
             <tr>
-              <td>Substation</td>
+              <td>11 kV Sub-Station</td>
               <td>Fire, Electric shock, Waterlogging</td>
               <td><span class="badge bg-danger">🔴 High</span></td>
               <td>Vital asset, exposed area</td>
@@ -786,7 +979,7 @@
             <tr>
               <td>Forest/Dry Vegetation</td>
               <td>Minor Fires, Animal Intrusion</td>
-              <td><span class="badge bg-warning text-dark">🟠 Medium</span></td>
+              <td><span class="badge bg-danger">🔴 High</span></td>
               <td>Seasonal hazard</td>
             </tr>
             <tr>
@@ -818,9 +1011,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Students (Hostels)</td><td>High (24/7)</td><td>High</td></tr>
-          <tr><td>Staff (Admin)</td><td>Medium</td><td>Medium</td></tr>
-          <tr><td>Trainers (Simulation)</td><td>High (at-risk zone)</td><td>High</td></tr>
+          <tr><td>Trainees (Hostels)</td><td>High (24/7)</td><td>High</td></tr>
+          <tr><td>Staff/Trainees (Admin)</td><td>High</td><td>High</td></tr>
+          <tr><td>Trainers (Demonstration/Simulation)</td><td>Low</td><td>Low</td></tr>
           <tr><td>Visitors (Auditorium)</td><td>Periodic</td><td>High during events</td></tr>
           <tr><td>Workers (Construction)</td><td>Limited area</td><td>Medium</td></tr>
         </tbody>
@@ -831,7 +1024,7 @@
     <div class="mb-3">
       <h4>🚷 Trespassing & Security Concerns</h4>
       <ul>
-        <li><strong>Access Points:</strong> Multiple open boundaries; some unmanned at night</li>
+        <li><strong>Access Points:</strong> Open Boundaries Connecting Village and Campus; </li>
         <li><strong>Perimeter Issues:</strong> Blind spots, limited CCTV, no motion detection</li>
         <li><strong>Risks:</strong>
           <ul>
@@ -1298,6 +1491,17 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 -->
  <!--<script src="chatbot-proxy.js"></script>-->
+<!-- Modal for Infra Gallery -->
+<div id="infraModal" class="hazard-modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeInfraModal()">&times;</span>
+    <h3 id="infraTitle"></h3>
+    <p id="infraDesc"></p>
+    <div id="infraImages" class="modal-gallery"></div>
+  </div>
+</div>
+
+
 
   <script src="app.js"></script>
 </body>

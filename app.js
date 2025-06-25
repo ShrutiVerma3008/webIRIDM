@@ -1,325 +1,3 @@
-// Handle tab switching
-/*function showTab(tabId) {
-  document.querySelectorAll('.tabPanel').forEach(panel => panel.style.display = 'none');
-  document.getElementById(tabId).style.display = 'block';
-}
-
-function toggleInfoBox(id) {
-  const tab = document.getElementById(id);
-  tab.style.display = (tab.style.display === 'none') ? 'block' : 'none';
-}
-document.querySelectorAll('.accordion-btn').forEach(btn => {
-  btn.addEventListener('click', function () {
-    document.querySelectorAll('.accordion-content').forEach(content => {
-      if (content !== this.nextElementSibling) {
-        content.style.display = 'none';
-      }
-    });
-    const content = this.nextElementSibling;
-    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-  });
-});
-
-// Update Preparedness content
-document.getElementById('disasterPrep').addEventListener('change', function () {
-  const val = this.value;
-  const out = document.getElementById('prepContent');
-  out.innerHTML = '';
-  if (val === 'Training') {
-    out.innerHTML = '<p>Preparedness training includes fire safety, first-aid, and drills.</p>';
-  } else if (val === 'Drills') {
-    out.innerHTML = '<p>Mock drills conducted quarterly to simulate disaster response.</p>';
-  } else if (val === 'DM Emergency Response Team') {
-    out.innerHTML = '<p>Dedicated team for each block assigned emergency roles.</p>';
-  } else if (val === 'Evacuation Plans') {
-    out.innerHTML = '<p>Evacution Plan </p>';
-  }
-});
-
-let damageLog = [];
-
-function recordDamage() {
-  const type = document.getElementById("damageType").value;
-  const cost = document.getElementById("damageCost").value;
-  const replaced = document.getElementById("damageReplaced").value;
-  const time = new Date().toLocaleString();
-  damageLog.push({ time, type, cost, replaced });
-  alert("Recorded.");
-}
-
-function toggleDamageHistory() {
-  const container = document.getElementById("damageHistory");
-  if (container.style.display === "none") {
-    container.style.display = "block";
-    let table = "<table><tr><th>Time</th><th>Type</th><th>Cost</th><th>Replaced</th></tr>";
-    damageLog.forEach(d => {
-      table += `<tr><td>${d.time}</td><td>${d.type}</td><td>${d.cost}</td><td>${d.replaced}</td></tr>`;
-    });
-    table += "</table>";
-    container.innerHTML = table;
-  } else {
-    container.style.display = "none";
-  }
-}
-
-let structData = [];
-let itData = [];
-
-function saveStructDamage() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Location: document.getElementById('structLoc').value,
-    Level: document.getElementById('structLevel').value,
-    Remarks: document.getElementById('structRemarks').value
-  };
-  structData.push(entry);
-  alert("Saved Structural Damage Record.");
-}
-
-function saveITLoss() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Area: document.getElementById('itArea').value,
-    Equipment: document.getElementById('itType').value,
-    Remarks: document.getElementById('itRemarks').value
-  };
-  itData.push(entry);
-  alert("Saved IT Damage Record.");
-}
-
-function viewHistory(type) {
-  let data = [], id = '';
-  if (type === 'struct') {
-    data = structData;
-    id = 'structHistory';
-  } else if (type === 'it') {
-    data = itData;
-    id = 'itHistory';
-  }
-  else if (type==='casual'){
-    data = casualtyData;
-    id='casualtyData'
-  }
-  else if(type==='re_cost'){
-    data= recoveryData;
-    id='recoveryData';
-  }
-  
-  let table = '<table border="1"><tr>';
-  Object.keys(data[0] || {}).forEach(k => table += `<th>${k}</th>`);
-  table += '</tr>';
-  data.forEach(row => {
-    table += '<tr>';
-    Object.values(row).forEach(cell => table += `<td>${cell}</td>`);
-    table += '</tr>';
-  });
-  table += '</table>';
-  document.getElementById(id).innerHTML = table;
-}
-
-function downloadCSV(type) {
-  let data = [], filename = '';
-  if (type === 'struct') {
-    data = structData;
-    filename = 'structural_damage.csv';
-  } else if (type === 'it') {
-    data = itData;
-    filename = 'it_equipment_loss.csv';
-  } else if(type=='casual'){
-    data=casualtyData;
-    filename='casualty_injury_reoprt.csv';
-  }
-  else if(type='re_cost'){
-    data=recoveryData;
-    filename='recovery_cost.csv';
-  }
-  if (!data.length) {
-    alert("No records found.");
-    return;
-  }
-
-  const headers = Object.keys(data[0]);
-  const rows = data.map(row => headers.map(h => `"${row[h]}"`).join(','));
-  const csvContent = [headers.join(','), ...rows].join('\n');
-
-  const blob = new Blob([csvContent], { type: 'text/csv' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-}
-
-  function downloadAllCSVs() {
-      downloadCSV('it');
-      downloadCSV('struct');
-      downloadCSV('re_cost');
-      downloadCSV('casual');
-    }
-let casualtyData = [];
-
-function saveCasualtyDamage() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Name: document.getElementById('casualtyName').value,
-    Severity: document.getElementById('casualtySeverity').value,
-    Description: document.getElementById('casualtyNote').value
-  };
-  casualtyData.push(entry);
-  alert("Saved Casualty/Injury Record.");
-}
-let recoveryData = [];
-
-function saveRecoveryLoss() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Cost: document.getElementById('recoveryCost').value,
-    Area: document.getElementById('recoveryArea').value,
-    Remarks: document.getElementById('recoveryRemarks').value
-  };
-  recoveryData.push(entry);
-  alert("Saved Recovery Cost Record.");
-}
-
-// Update Mitigation content
-document.getElementById('disasterMitig').addEventListener('change', function () {
-  const val = this.value;
-  const out = document.getElementById('mitigContent');
-  out.innerHTML = '';
-  if (val === 'Training') {
-    out.innerHTML = '<p>Mitigation training focuses on risk audits and fire safety compliance.</p>';
-  } else if (val === 'Drills') {
-    out.innerHTML = '<p>Equipment and route testing for all emergency exits.</p>';
-  } else if (val === 'DM Emergency Response Team') {
-    out.innerHTML = '<p>Team performs periodic safety inspections and readiness checks.</p>';
-  } else if (val === 'Evacuation Plans') {
-    out.innerHTML = '<p>Maps are placed in key areas for fast reference during emergencies.</p>';
-  }
-});
-
-// Initialize Leaflet map  lat: 12.87025, lon: 77.42980 
-const map = L.map('mapid').setView([12.87025, 77.42980], 16);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-map.on('rotate', () => {
-  const angle = map.getBearing(); // If using rotation plugin
-  document.getElementById('compassIcon').style.transform = `rotate(${-angle}deg)`;
-});
-
-// Sample fire stations
-const fireStations = [
-  { name: "Nagarbhavi Fire Station", lat: 12.93542, lon: 77.51003 },
-  { name: "RamaNagar Fire Station", lat: 12.74299, lon: 77.3106 }
-];
-
-fireStations.forEach(fs => {
-  L.marker([fs.lat, fs.lon]).addTo(map).bindPopup(`<b>${fs.name}</b>`);
-});
-
-
-//const hazards = [
-//  { name: "Flood Zone - Basement", lat: 12.9072, lon: 77.4329, icon: "💧" },
-  //{ name: "Fire Risk - Pantry", lat: 12.9076, lon: 77.4333, icon: "🔥" },
-//  { name: "Short Circuit - Lab", lat: 12.9078, lon: 77.4335, icon: "⚡" }
-//];
-
-hazards.forEach(h => {
-  L.marker([h.lat, h.lon])
-    .addTo(map)
-    .bindPopup(`<b>${h.icon} ${h.name}</b>`);
-});
-
-// Sample campus markers
-const campusLocations = [
-  { name: "Admin Block", lat: 12.87025, lon: 77.42980 },
-  { name: "Hostel", lat: 12.867583, lon: 77.428444}
-  
-];
-const fireIcon = L.icon({
-  iconUrl: 'fireStation.png',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32]
-});
-
-const hospitalIcon = L.icon({
-  iconUrl: 'hospital.png',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32]
-});
-
-const policeIcon = L.icon({
-  iconUrl: 'police.png',
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],
-  popupAnchor: [0, -32]
-});
-
-campusLocations.forEach(loc => {
-  L.circleMarker([loc.lat, loc.lon], {
-    radius: 6,
-    fillColor: '#007bff',
-    color: '#003366',
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-  }).addTo(map).bindPopup(`<b>${loc.name}</b>`);
-
-  // Assuming you already have a Leaflet map initialized as `map`
-
-L.marker([12.93542, 77.51003],{ icon: fireIcon }) // 🔥 Nagarbhavi Fire Station
-  .addTo(map)
-  .bindPopup("<b>Nagarbhavi Fire Station</b><br>📞 <a href='tel:101'>101</a><b>Distance : 14.7km</b><b> Time ~ 32min</b>");
-L.marker([12.74299, 77.3106],{ icon: fireIcon }) // 🔥 ramanagara Fire Station
-  .addTo(map)
-  .bindPopup("<b>Ramanagara Fire Station</b><br>📞 <a href='tel:101'>101</a><b>Distance : 21.4km</b><b> Time ~ 34min</b>");
-
-L.marker([12.896507938688266, 77.46182557283645],{ icon: hospitalIcon }) // 🏥 St. John's Hospital
-  .addTo(map)
-  .bindPopup("<b>RajaRajeshwari hospital, Kengeri </b><br>📞 <a href='tel:08028437888'>08028437888</a>");
-L.marker([12.893717728784821, 77.4574634250733],{ icon: hospitalIcon }) // 🏥 
-  .addTo(map)
-  .bindPopup("<b>Sdm Institute Of Ayurveda and Hospital, Kengeri </b><br>📞 <a href='tel:09741897124'>09741897124</a>");
-  
-L.marker([12.903171772113318, 77.49750795390914],{ icon: hospitalIcon }) // 🏥 Narayana Multispeciality
-  .addTo(map)
-  .bindPopup("<b>Gleneagles bgs hospital, Kengeri y</b><br>📞 <a href='tel:8527306331'>8527306331</a>");
-
-L.marker([12.93214692297212, 77.49295223601291],{ icon: hospitalIcon }) // 🏥 RajaRajeswari Medical Hospital
-  .addTo(map)
-  .bindPopup("<b>Bangalore Hospital Kengeri</b><br>📞 <a href='tel:9090804680'>9090804680</a>");
-L.marker([12.912371214356572, 77.48172766982762],{ icon: policeIcon }) // 🏥 RajaRajeswari Medical Hospital
-  .addTo(map)
-  .bindPopup("<b>Kengeri Police Station</b><br>📞 <a href='tel:08022942510'>08022942510</a>");
-L.marker([12.884487098478836, 77.44940630107578],{ icon: policeIcon }) // 🏥 RajaRajeswari Medical Hospital
-  .addTo(map)
-  .bindPopup("<b>Kumbalagudu Police Station</b><br>📞 <a href='tel:08028437599'>08028437599</a>");
-
-});
-// Campus boundary (example coordinates)
-const campusOutline = [
- [12.871694, 77.430694],
-[12.871917, 77.430167],
-[12.868528, 77.428500],
-[12.866333, 77.427528],
-[12.864222, 77.426750],
-[12.864083, 77.427028],
-[12.865056, 77.427750],
-[12.866917, 77.428556],
-[12.868194, 77.429306],
-[12.869944, 77.430083],
-[12.870944, 77.430500]
-];
-
-L.polygon(campusOutline, {
-  color: 'red',
-  fillColor: '#f03',
-  fillOpacity: 0.5
-}).addTo(map).bindPopup("IRIDM Campus Boundary");
-
-*/
 // local storage helper
 
 function saveToStorage(key, entry) {
@@ -692,8 +370,22 @@ const policeIcon = L.icon({
   popupAnchor: [0, -32]
 });
 
+const hostelIcon = L.icon({
+  iconUrl: 'hostel.png',
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32]
+});
+
+const adminIcon = L.icon({
+  iconUrl: 'adminBlockIcon.png',
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+  popupAnchor: [0, -32]
+});
+
 campusLocations.forEach(loc => {
-  L.marker([loc.lat, loc.lon], {
+  L.circleMarker([loc.lat, loc.lon], {
     radius: 6,
     fillColor: '#007bff',
     color: '#003366',
@@ -701,8 +393,6 @@ campusLocations.forEach(loc => {
     opacity: 1,
     fillOpacity: 0.8
   }).addTo(map).bindPopup(`<b>${loc.name}</b>`);
-
-  // Assuming you already have a Leaflet map initialized as `map`
 
 L.marker([12.93542, 77.51003],{ icon: fireIcon }) // 🔥 Nagarbhavi Fire Station
   .addTo(map)
@@ -732,6 +422,17 @@ L.marker([12.884487098478836, 77.44940630107578],{ icon: policeIcon }) // 🏥 R
   .addTo(map)
   .bindPopup("<b>Kumbalagudu Police Station</b><br>📞 <a href='tel:08028437599'>08028437599</a>");
 
+/**const campusLocations = [
+  { name: "Admin Block", lat: 12.87025, lon: 77.42980 },
+  { name: "Hostel", lat: 12.867583, lon: 77.428444}
+]; */
+
+L.marker([12.87025, 77.42980],{ icon: adminIcon }) // admin block
+  .addTo(map)
+  .bindPopup("<b>Admin Building</b><");
+L.marker([12.867583, 77.428444],{ icon: hostelIcon }) // admin block
+  .addTo(map)
+  .bindPopup("<b>Hostel Building</b><");
 });
 
 // Campus boundary (
@@ -764,3 +465,186 @@ L.polygon(campusOutline, {
   fillColor: '#f03',
   fillOpacity: 0.5
 }).addTo(map).bindPopup("IRIDM Campus Boundary");
+
+
+// images tuening
+function showHazardGallery(title, desc, imgArray) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDesc').textContent = desc;
+
+  const container = document.getElementById('modalImages');
+  container.innerHTML = '';
+
+  imgArray.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title + ' image';
+    container.appendChild(img);
+  });
+
+  document.getElementById('hazardModal').style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('hazardModal').style.display = 'none';
+}
+
+// Modal logic
+function openImageModal(img) {
+  document.getElementById('modalSliderImg').src = img.src;
+  document.getElementById('imageModal').style.display = 'flex';
+}
+function closeImageModal() {
+  document.getElementById('imageModal').style.display = 'none';
+}
+
+// User control scrolling
+function scrollSlider(direction) {
+  const slider = document.getElementById('floatingSlider');
+  slider.scrollBy({
+    left: direction * 300,
+    behavior: 'smooth'
+  });
+}
+
+function openInfraGallery(title, desc, imageList) {
+  document.getElementById('infraTitle').textContent = title;
+  document.getElementById('infraDesc').textContent = desc;
+
+  const gallery = document.getElementById('infraImages');
+  gallery.innerHTML = '';
+
+  imageList.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title;
+    gallery.appendChild(img);
+  });
+
+  document.getElementById('infraModal').style.display = 'flex';
+}
+
+function closeInfraModal() {
+  document.getElementById('infraModal').style.display = 'none';
+}
+
+
+
+// ========== DUMMY DATA FOR STRUCTURAL DAMAGE ==========
+const structDummyData = [
+  { Location: "Admin Block", Damage: "Moderate Cracks", Remarks: "Visible cracks in central columns due to tremors" },
+  { Location: "Boys Hostel", Damage: "Ceiling Collapse", Remarks: "Roof collapsed in one room, no casualties" },
+  { Location: "Canteen Area", Damage: "Broken Windows", Remarks: "Glass shattered due to shockwave" },
+  { Location: "Lecture Hall 2", Damage: "Wall Damage", Remarks: "Plaster fallen, brickwork exposed" },
+  { Location: "Main Gate", Damage: "Gate Misalignment", Remarks: "Gate frame tilted, stuck partially" },
+  { Location: "Parking Shed", Damage: "Roof Dislodged", Remarks: "Shed roof lifted partially during storm" },
+  { Location: "Library Wing", Damage: "Water Leakage", Remarks: "Leak in roof due to cracks" },
+  { Location: "Girls Hostel", Damage: "Door Jammed", Remarks: "Entry gate distorted, needs replacement" },
+  { Location: "Guest House", Damage: "Minor Cracks", Remarks: "Hairline cracks in bedroom wall" },
+  { Location: "Fire Drill Storage", Damage: "Structure Bent", Remarks: "Frame support twisted, unsafe" }
+];
+localStorage.setItem('struct', JSON.stringify(structDummyData));
+
+// ========== DUMMY DATA FOR IT LOSS ==========
+const itDummyData = [
+  { Area: "Control Room", Equipment: "Server Rack", Remarks: "Hard drive failure due to power surge" },
+  { Area: "Computer Lab", Equipment: "Desktop PCs", Remarks: "4 systems water damaged due to roof leak" },
+  { Area: "Admin Office", Equipment: "Printers", Remarks: "Laser printer malfunctioned" },
+  { Area: "Surveillance Unit", Equipment: "CCTV Cameras", Remarks: "3 cameras not working post-incident" },
+  { Area: "Library Network", Equipment: "Switches", Remarks: "Ethernet switch burnt due to lightning" },
+  { Area: "Accounts Section", Equipment: "UPS Unit", Remarks: "Battery backup failed" },
+  { Area: "WiFi Node - Block A", Equipment: "Router", Remarks: "Device not responding" },
+  { Area: "Training Hall", Equipment: "Projector", Remarks: "Projection lens damaged" },
+  { Area: "Server Room", Equipment: "Cooling Unit", Remarks: "Overheated and auto shut down" },
+  { Area: "Reception Desk", Equipment: "POS System", Remarks: "Monitor broken, keyboard unresponsive" }
+];
+localStorage.setItem('it', JSON.stringify(itDummyData));
+
+// ========== DUMMY DATA FOR CASUALTY ==========
+const casualtyDummyData = [
+  { Name: "Ankit Reddy", Severity: "Moderate", Details: "Minor head injury during stair fall" },
+  { Name: "Ram Verma", Severity: "Mild", Details: "Sprained ankle during evacuation" },
+  { Name: "Rahul Sinha", Severity: "Severe", Details: "Hit by falling debris in hostel" },
+  { Name: "Divya Nair", Severity: "Moderate", Details: "Cut on forearm from broken glass" },
+  { Name: "Sameer Mehta", Severity: "Mild", Details: "Smoke inhalation during fire drill" },
+  { Name: "Priya Sharma", Severity: "Mild", Details: "Collapsed due to panic attack" },
+  { Name: "Aman Gupta", Severity: "Severe", Details: "Fractured leg, admitted to nearby hospital" },
+  { Name: "Neha Rao", Severity: "Moderate", Details: "Sustained bruises during crowd movement" },
+  { Name: "Sanytan Mandal", Severity: "Mild", Details: "Scratches on arms from broken window" },
+  { Name: "Shivam Kumar", Severity: "Moderate", Details: "Concussion suspected, under observation" }
+];
+localStorage.setItem('casual', JSON.stringify(casualtyDummyData));
+
+// ========== DUMMY DATA FOR RECOVERY COST ==========
+const recoveryDummyData = [
+  { Cost: 120000, Area: "Admin Block", Remarks: "Repair of ceiling and internal wiring" },
+  { Cost: 95000, Area: "Canteen", Remarks: "Glasswork and interior furniture replacement" },
+  { Cost: 175000, Area: "Computer Lab", Remarks: "System replacements and re-cabling" },
+  { Cost: 42000, Area: "Boys Hostel", Remarks: "Temporary roof patch and window repair" },
+  { Cost: 135000, Area: "Library", Remarks: "Water damage control and IT recovery" },
+  { Cost: 88000, Area: "Guest House", Remarks: "Wall treatment and furniture repair" },
+  { Cost: 210000, Area: "Surveillance System", Remarks: "Replacement of damaged cameras" },
+  { Cost: 56000, Area: "Lecture Hall 3", Remarks: "Wall panel fix and electrical rewiring" },
+  { Cost: 98000, Area: "Server Room", Remarks: "Cooling system and UPS maintenance" },
+  { Cost: 30000, Area: "Reception Area", Remarks: "Minor civil repairs and décor" }
+];
+localStorage.setItem('re_cost', JSON.stringify(recoveryDummyData));
+
+
+
+/**
+ * structral dummy 
+ * [
+  {"Location": "Admin Block", "Damage Level": "Moderate Cracks", "Remarks": "Visible cracks in central columns due to tremors"},
+  {"Location": "Boys Hostel", "Damage Level": "Ceiling Collapse", "Remarks": "Roof collapsed in one room, no casualties"},
+  {"Location": "Canteen Area", "Damage Level": "Broken Windows", "Remarks": "Glass shattered due to shockwave"},
+  {"Location": "Lecture Hall 2", "Damage Level": "Wall Damage", "Remarks": "Plaster fallen, brickwork exposed"},
+  {"Location": "Main Gate", "Damage Level": "Gate Misalignment", "Remarks": "Gate frame tilted, stuck partially"},
+  {"Location": "Parking Shed", "Damage Level": "Roof Dislodged", "Remarks": "Shed roof lifted partially during storm"},
+  {"Location": "Library Wing", "Damage Level": "Water Leakage", "Remarks": "Leak in roof due to cracks"},
+  {"Location": "Girls Hostel", "Damage Level": "Door Jammed", "Remarks": "Entry gate distorted, needs replacement"},
+  {"Location": "Guest House", "Damage Level": "Minor Cracks", "Remarks": "Hairline cracks in bedroom wall"},
+  {"Location": "Fire Drill Storage", "Damage Level": "Structure Bent", "Remarks": "Frame support twisted, unsafe"}
+]
+
+IT
+[
+  {"System/Area": "Control Room", "Type of Equipment": "Server Rack", "Remarks": "Hard drive failure due to power surge"},
+  {"System/Area": "Computer Lab", "Type of Equipment": "Desktop PCs", "Remarks": "4 systems water damaged due to roof leak"},
+  {"System/Area": "Admin Office", "Type of Equipment": "Printers", "Remarks": "Laser printer malfunctioned"},
+  {"System/Area": "Surveillance Unit", "Type of Equipment": "CCTV Cameras", "Remarks": "3 cameras not working post-incident"},
+  {"System/Area": "Library Network", "Type of Equipment": "Switches", "Remarks": "Ethernet switch burnt due to lightning"},
+  {"System/Area": "Accounts Section", "Type of Equipment": "UPS Unit", "Remarks": "Battery backup failed"},
+  {"System/Area": "WiFi Node - Block A", "Type of Equipment": "Router", "Remarks": "Device not responding"},
+  {"System/Area": "Training Hall", "Type of Equipment": "Projector", "Remarks": "Projection lens damaged"},
+  {"System/Area": "Server Room", "Type of Equipment": "Cooling Unit", "Remarks": "Overheated and auto shut down"},
+  {"System/Area": "Reception Desk", "Type of Equipment": "POS System", "Remarks": "Monitor broken, keyboard unresponsive"}
+]
+
+[
+  {"Person Name": "Ankit Reddy", "Injury Severity": "Moderate", "Details": "Minor head injury during stair fall"},
+  {"Person Name": "Shruti Verma", "Injury Severity": "Mild", "Details": "Sprained ankle during evacuation"},
+  {"Person Name": "Rahul Sinha", "Injury Severity": "Severe", "Details": "Hit by falling debris in hostel"},
+  {"Person Name": "Divya Nair", "Injury Severity": "Moderate", "Details": "Cut on forearm from broken glass"},
+  {"Person Name": "Sameer Mehta", "Injury Severity": "Mild", "Details": "Smoke inhalation during fire drill"},
+  {"Person Name": "Priya Sharma", "Injury Severity": "Mild", "Details": "Collapsed due to panic attack"},
+  {"Person Name": "Aman Gupta", "Injury Severity": "Severe", "Details": "Fractured leg, admitted to nearby hospital"},
+  {"Person Name": "Neha Rao", "Injury Severity": "Moderate", "Details": "Sustained bruises during crowd movement"},
+  {"Person Name": "Sanytan Mandal", "Injury Severity": "Mild", "Details": "Scratches on arms from broken window"},
+  {"Person Name": "Shivam Kumar", "Injury Severity": "Moderate", "Details": "Concussion suspected, under observation"}
+]
+
+[
+  {"Estimated Cost (INR)": 120000, "Affected Area": "Admin Block", "Remarks": "Repair of ceiling and internal wiring"},
+  {"Estimated Cost (INR)": 95000, "Affected Area": "Canteen", "Remarks": "Glasswork and interior furniture replacement"},
+  {"Estimated Cost (INR)": 175000, "Affected Area": "Computer Lab", "Remarks": "System replacements and re-cabling"},
+  {"Estimated Cost (INR)": 42000, "Affected Area": "Boys Hostel", "Remarks": "Temporary roof patch and window repair"},
+  {"Estimated Cost (INR)": 135000, "Affected Area": "Library", "Remarks": "Water damage control and IT recovery"},
+  {"Estimated Cost (INR)": 88000, "Affected Area": "Guest House", "Remarks": "Wall treatment and furniture repair"},
+  {"Estimated Cost (INR)": 210000, "Affected Area": "Surveillance System", "Remarks": "Replacement of damaged cameras"},
+  {"Estimated Cost (INR)": 56000, "Affected Area": "Lecture Hall 3", "Remarks": "Wall panel fix and electrical rewiring"},
+  {"Estimated Cost (INR)": 98000, "Affected Area": "Server Room", "Remarks": "Cooling system and UPS maintenance"},
+  {"Estimated Cost (INR)": 30000, "Affected Area": "Reception Area", "Remarks": "Minor civil repairs and décor"}
+]
+
+ */
