@@ -259,7 +259,8 @@
     <div class="col-12 col-sm-6 col-lg-4 d-flex">
       <div class="card border-danger shadow flex-fill" onclick="openInfraGallery('Hostel', 'Tunga & Bhadra blocks with shared rooms and facilities.', ['static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_011f8fcd.jpg', 
       'static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_8129824a.jpg',
-      'static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.37_48311085.jpg'])">
+      'static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.37_48311085.jpg',
+      'static/images/fire/Admin/WhatsApp Image 2025-06-26 at 10.33.35_b78a1e59.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-danger">🏨 Hostels</h5>
           <ul class="mb-0">
@@ -272,7 +273,7 @@
 
     <!-- Kitchen & Dining -->
     <div class="col-12 col-sm-6 col-lg-4 d-flex">
-      <div class="card border-dark shadow flex-fill" onclick="openInfraGallery('Kitchen & Dining', 'Catering for 150 meals per shift with seated dining.', ['static/images/kitchen1.jpg', 'static/images/dining1.jpg'])">
+      <div class="card border-dark shadow flex-fill" onclick="openInfraGallery('Kitchen & Dining', 'Catering for 150 meals per shift with seated dining.', [ 'static/images/fire/Admin/WhatsApp Image 2025-06-26 at 10.33.34_357e9ac1.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-dark">🍽 Kitchen & Dining</h5>
           <ul class="mb-0">
@@ -484,11 +485,11 @@
 
               <div class='evacuation-plan'>
         <h3>Ground Floor - Hostel Block</h3>
-         <img src="hostelGroundFloor.jpg" alt="Hostel Ground Floor Plan">
+         <img src="hostelG.jpg" alt="Hostel Ground Floor Plan">
       </div>
       <div class='evacuation-plan'>
         <h3>Ground Floor - Admin Block </h3>
-        <img src='adminBlockGround.jpg' alt='Placeholder for Admin Ground Floor Plan'>
+        <img src='adminf.jpg' alt='Placeholder for Admin Ground Floor Plan'>
       </div>
       <div class='evacuation-plan'>
         <h3>First Floor - Admin Block</h3>
@@ -497,7 +498,7 @@
       <div class='evacuation-plan'>
         <h3>First Floor & Terrace - Hostel </h3>
        
-        <img src="hostelFirest.jpg" alt="Hostel Top Floor Plan">
+        <img src="hostelF.jpg" alt="Hostel Top Floor Plan">
 
       </div>
       </div>
@@ -810,89 +811,7 @@
         </table>
       </div>
     </div>
-<!--    
-      Smart Classrooms 
-    <div class="col">
-      <div class="card border-primary shadow">
-        <div class="card-body">
-          <h5 class="card-title text-primary"> Fire Prone Area</h5>
-          <p class="card-text">
-            • <a> </a>Admin Building<br>
-            • Hostel <br>
-            • Open Areas
-          </p>
-        </div>
-      </div>
-    </div>
-    <br>
 
-    
-    <div class="col">
-      <div class="card border-danger shadow">
-        <div class="card-body">
-          <h5 class="card-title text-danger">Trespassing Prone Area</h5>
-        <ul class="mb-0">
-            <li><strong>Tunga Block:</strong> 40 rooms, 100 beds (twin/triple sharing)</li>
-            <li><strong>Bhadra Block:</strong> 28 rooms (double occupancy)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-<br>
- 
-    <div class="col">
-      <div class="card border-dark shadow">
-        <div class="card-body">
-          <h5 class="card-title text-dark">Electrical Harzard Prone Area</h5>
-          <ul class="mb-0">
-            <li>Admin Block</li>
-            <li>Hostel</li>
-            <li>11 kV Sub Station</li>
-            <li>Open Area</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-<br>
-    Construction
-    <div class="col">
-      <div class="card border-info shadow">
-        <div class="card-body">
-          <h5 class="card-title text-info">Construction Building Hazard</h5>
-          <p class="card-text"></p>
-        </div>
-      </div>
-    </div>
-<br>
-    Flood Prone Area -->
-    <!-- <div class="col">
-      <div class="card border-secondary shadow">
-        <div class="card-body">
-          <h5 class="card-title text-secondary">Flood Prone Area</h5>
-          <p class="card-text"></p>
-        </div>
-      </div>
-    </div>
-<br> -->
-      <!-- Animanl Intrusion  -->
-    <!-- <div class="col">
-      <div class="card border-warning shadow">
-        <div class="card-body">
-          <h5 class="card-title text-warning">Animal Intrusion</h5>
-          <p class="card-text"></p>
-        </div>
-      </div>
-    </div>
-<br> -->
-    <!-- Stamped  -->
-    <!-- <div class="col">
-      <div class="card border-success shadow">
-        <div class="card-body">
-          <h5 class="card-title text-success">Stamped Prone Area</h5>
-          <p class="card-text"></p>
-        </div>
-      </div>
-    </div> -->
 
 <!-- Auto-Rotating Hazard Gallery -->
 <h3 class="mb-4">⚠️ Hazard Gallery</h3>
@@ -975,6 +894,7 @@
     <div id="modalImages" class="modal-gallery"></div>
   </div>
 </div>
+
 
 
 
@@ -1626,25 +1546,24 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <!--------------------------------------- CHAT bOT ------------------------------------------>
-<!-- Floating Chatbot Icon
+<!-- Floating Chatbot Icon -->
 <div id="chatbotIcon" onclick="toggleChatPopup()">🤖</div>
 
-<!-- Chatbot Popup Box 
+<!-- Chatbot Popup Box -->
 <div id="chatPopup">
   <div id="chatHeader">
-    IRIDM Assistant
-    <span style="cursor:pointer;" onclick="toggleChatPopup()">×</span>
+    <span>IRIDM Assistant</span>
+    <span style="cursor: pointer;" onclick="toggleChatPopup()">×</span>
   </div>
   <div id="chatBody">
     <div id="chatMessages"></div>
     <div id="chatInputArea">
       <input type="text" id="chatInput" placeholder="Ask something..." />
-      <button onclick="sendMessage()">Send</button>
+      <button onclick="askChatbot()">Send</button>
     </div>
   </div>
 </div>
--->
- <!--<script src="chatbot-proxy.js"></script>-->
+
 <!-- Modal for Infra Gallery -->
 <div id="infraModal" class="hazard-modal">
   <div class="modal-content">

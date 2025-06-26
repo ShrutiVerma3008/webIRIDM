@@ -605,3 +605,120 @@ button.clear-btn {
 button.clear-btn:hover {
   background-color: #ef6c00;
 }
+
+
+#chatbotIcon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #7b3fe4;
+  color: white;
+  padding: 12px 14px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+#chatPopup {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  height: 420px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+}
+
+#chatHeader {
+  background: #7b3fe4;
+  color: white;
+  padding: 10px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 280px;         /* ✅ Ensures scroll activates */
+  padding: 8px;
+  background: #f9f9f9;
+  scroll-behavior: smooth;
+}
+
+#chatMessages .user,
+#chatMessages .bot {
+  max-width: 75%;
+  padding: 6px 10px;
+  margin: 5px 0;
+  border-radius: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  font-size: 13px;
+}
+
+#chatMessages .user {
+  background-color: #e4d7ff;
+  color: #4b2ea1;
+  margin-left: auto;
+  text-align: right;
+}
+
+#chatMessages .bot {
+  background-color: #eeeeee;
+  color: #333;
+  margin-right: auto;
+  text-align: left;
+}
+#chatInputArea {
+  display: flex;
+  align-items: center;         /* ✅ Perfect vertical alignment */
+  padding: 8px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+#chatInputArea input {
+  flex: 10;                     /* Input takes full remaining space */
+  padding: 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+#chatInputArea button {
+  padding: 8px 10px;           /* Compact height & width */
+  background: #3b90f1;
+  color: white;
+  border: 1px solid #3f9fe4;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 12px;
+  min-width: 40px;     
+  margin-top: -9px; /* Moves it upward slightly and visibly /        / Reasonable minimum width */
+}
+
+#chatInputArea button:hover {
+  background-color: #4dc3eb;
+}

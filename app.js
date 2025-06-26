@@ -736,6 +736,76 @@ function clearRecoveryForm() {
 }
 
 
+function toggleChatPopup() {
+  const popup = document.getElementById("chatPopup");
+  popup.style.display = (popup.style.display === "flex") ? "none" : "flex";
+
+  // Optional: Auto-focus on input when opened
+  if (popup.style.display === "flex") {
+    setTimeout(() => document.getElementById("chatInput").focus(), 100);
+  }
+}
+
+function askChatbot() {
+  const input = document.getElementById("chatInput");
+  const message = input.value.trim();
+  const messages = document.getElementById("chatMessages");
+
+  if (!message) return;
+
+  // Display user message
+  const userDiv = document.createElement("div");
+  userDiv.className = "user";
+  userDiv.textContent = message;
+  messages.appendChild(userDiv);
+  input.value = "";
+
+  // Optional: Add a typing indicator (uncomment below if needed)
+  // const typingDiv = document.createElement("div");
+  // typingDiv.className = "bot typing";
+  // typingDiv.textContent = "Typing...";
+  // messages.appendChild(typingDiv);
+
+  // Scroll to bottom
+  messages.scrollTop = messages.scrollHeight;
+
+  // Send to backend
+  fetch("http://localhost:5000/api/query", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: message })
+  })
+    .then(res => res.json())
+    .then(data => {
+      // Remove typing indicator if used
+      // if (typingDiv) typingDiv.remove();
+
+      const botDiv = document.createElement("div");
+      botDiv.className = "bot";
+      botDiv.textContent = data.response || "No response received.";
+      messages.appendChild(botDiv);
+      messages.scrollTop = messages.scrollHeight;
+    })
+    .catch(err => {
+      // if (typingDiv) typingDiv.remove();
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "bot";
+      errorDiv.textContent = "⚠ Error contacting bot.";
+      messages.appendChild(errorDiv);
+      messages.scrollTop = messages.scrollHeight;
+    });
+}
+
+// Support pressing Enter to send message
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("chatInput");
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      askChatbot();
+    }
+  });
+});
+
 
 // ========== DUMMY DATA FOR STRUCTURAL DAMAGE ==========
 const structDummyData = [
