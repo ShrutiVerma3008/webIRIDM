@@ -15,7 +15,7 @@
 </head>
 <body>
   <header>
-    <h1>IRIDM Disaster‑Management Assistant 🚒</h1>
+    <h1>IRIDM Disaster‑Management Assistant</h1>
     <p>Plan and respond to emergencies effectively across the IRIDM campus.</p>
      <img src="IRIDM LOGO 1.png" alt="IRIDM Logo" class="logo">
   </header>
@@ -84,6 +84,13 @@
       <button onclick="showTab('hrv')">⚠️ Hazard Prone Area (HRV)</button>
     </section>
 
+<!-- Global Image Modal -->
+<div id="imageModal" class="image-modal">
+  <span class="close" onclick="closeImageModal()">&times;</span>
+  <img class="modal-img" id="modalSliderImg" />
+</div>
+
+
     <section id="tabContent">
       <div id="overview" class="tabPanel">
         <!-- Overview content -->
@@ -110,11 +117,29 @@
   <div class="floating-slider" id="floatingSlider">
     <img src="AdminBlock.jpg" alt="Image 1" onclick="openImageModal(this)">
 
-    <img src="static/images/classroom/clas2.jpg" alt="Image 1" onclick="openImageModal(this)">
-    <img src="static/images/classroom/corridore.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/admin/image26.png" alt="Image 1" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/admin/image33.png" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/openArea/pond.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/openArea/miawalki.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/openArea/tunnel2.jpg" alt="Image 2" onclick="openImageModal(this)">
+
     <img src="static/images/classroom/lib.jpg" alt="Image 3" onclick="openImageModal(this)">
     <img src="static/images/classroom/Officer.jpg" alt="Image 4" onclick="openImageModal(this)">
-    <img src="static/images/fire/classrom1.jpg alt="Image 5" onclick="openImageModal(this)">
+    <img src="static/images/fire/classrom1.jpg "alt="Image 5" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_011f8fcd.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_8129824a.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.37_48311085.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.34_f4717a9d.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/admin/image26.png" alt="Image 1" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/admin/image33.png" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/classroom/lib.jpg" alt="Image 3" onclick="openImageModal(this)">
+    <img src="static/images/classroom/Officer.jpg" alt="Image 4" onclick="openImageModal(this)">
+    <img src="static/images/fire/classrom1.jpg "alt="Image 5" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_011f8fcd.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_8129824a.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.37_48311085.jpg" alt="Image 2" onclick="openImageModal(this)">
+    <img src="static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.34_f4717a9d.jpg" alt="Image 2" onclick="openImageModal(this)">
+
   </div>
   <button class="slide-btn left" onclick="scrollSlider(-1)">&#10094;</button>
   <button class="slide-btn right" onclick="scrollSlider(1)">&#10095;</button>
@@ -222,7 +247,7 @@
 
     <!-- Smart Classrooms -->
     <div class="col-12 col-sm-6 col-lg-4 d-flex">
-      <div class="card border-primary shadow flex-fill" onclick="openInfraGallery('Smart Classrooms', 'Fully air-conditioned digital classrooms with smart boards and seating.', ['static/images/classroom1.jpg', 'static/images/classroom2.jpg'])">
+      <div class="card border-primary shadow flex-fill" onclick="openInfraGallery('Smart Classrooms', 'Fully air-conditioned digital classrooms with smart boards and seating.', ['static/images/classroom/clas2.jpg', 'static/images/fire/classrom1.jpg','static/images/classroom/corridore.jpg','static/images/Front Page/admin/image26.png'])">
         <div class="card-body">
           <h5 class="card-title text-primary">🎓 Smart Classrooms</h5>
           <p class="card-text">• 5 fully air-conditioned (200 seats)<br>• 3 under construction<br>• Final capacity: 320 seats</p>
@@ -232,7 +257,9 @@
 
     <!-- Hostels -->
     <div class="col-12 col-sm-6 col-lg-4 d-flex">
-      <div class="card border-danger shadow flex-fill" onclick="openInfraGallery('Hostels', 'Tunga & Bhadra blocks with shared rooms and facilities.', ['static/images/hostel_groundFloor.jpg', 'static/images/hostelTopFloor.jpg'])">
+      <div class="card border-danger shadow flex-fill" onclick="openInfraGallery('Hostel', 'Tunga & Bhadra blocks with shared rooms and facilities.', ['static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_011f8fcd.jpg', 
+      'static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.36_8129824a.jpg',
+      'static/images/Front Page/hostel/WhatsApp Image 2025-06-25 at 16.46.37_48311085.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-danger">🏨 Hostels</h5>
           <ul class="mb-0">
@@ -258,7 +285,7 @@
 
     <!-- E-Library -->
     <div class="col-12 col-sm-6 col-lg-4 d-flex">
-      <div class="card border-info shadow flex-fill" onclick="openInfraGallery('E-Library & Faculty Chambers', 'Learning & research rooms.', ['static/images/library1.jpg'])">
+      <div class="card border-info shadow flex-fill" onclick="openInfraGallery('E-Library & Faculty Chambers', 'Learning & research rooms.', ['static/images/classroom/lib.jpg','static/images/classroom/WhatsApp Image 2025-06-25 at 15.35.28_ccb9524a.jpg'])">
         <div class="card-body">
           <h5 class="card-title text-info">📚 E-Library & Faculty Chambers</h5>
           <p class="card-text">Dedicated spaces for study and academic discussions.</p>
@@ -876,7 +903,7 @@
     <div class="hazard-card red" onclick="showHazardGallery(
       'Electrical Hazard',
       'Admin Block, Hostel, 11kV Sub Station',
-      ['static/images/elcb.jpg']
+      ['static/images/elcb.jpg','static/images/Hazards/Electrical Hazards/WhatsApp Image 2025-06-25 at 16.46.35_322108d2.jpg','static/images/Hazards/Electrical Hazards/WhatsApp Image 2025-06-25 at 16.46.36_2059ab83.jpg']
     )">
       <h4>Electrical Hazard</h4>
       <p>Admin Block, Hostel, Sub Station</p>
@@ -886,9 +913,9 @@
     <div class="hazard-card gray" onclick="showHazardGallery(
       'Flood Prone Area',
       'Drainage failure, tunnels, low-lying zones',
-      ['static/images/flood1.jpg', 'static/images/flood2.jpg']
+      ['static/images/Hazards/Flood Prone Areas/WhatsApp Image 2025-06-25 at 16.46.34_3c83e6c1.jpg']
     )">
-      <h4>Flood Risk</h4>
+      <h4>Flood Prone Area</h4>
       <p>Heavy rain & drainage failure zones</p>
     </div>
 
@@ -896,7 +923,7 @@
     <div class="hazard-card yellow" onclick="showHazardGallery(
       'Animal Intrusion',
       'Hostel rear, Forest edge',
-      ['static/images/animal1.jpg']
+      ['static/images/Hazards/Animal Intrusion/WhatsApp Image 2025-06-25 at 16.46.35_a5fa03cc.jpg']
     )">
       <h4>Animal Intrusion</h4>
       <p>Snakes, insects, strays</p>
@@ -906,7 +933,7 @@
     <div class="hazard-card blue" onclick="showHazardGallery(
       'Construction Hazard',
       'Open construction zones',
-      ['static/images/construction1.jpg']
+      ['static/images/Hazards/construction hazard/WhatsApp Image 2025-06-25 at 16.46.31_8aec6729.jpg','static/images/Hazards/construction hazard/WhatsApp Image 2025-06-25 at 16.46.32_7c3161fe.jpg','static/images/Hazards/construction hazard/WhatsApp Image 2025-06-25 at 16.46.33_2cdc99cd.jpg','static/images/Hazards/construction hazard/WhatsApp Image 2025-06-25 at 16.46.33_e290a02d.jpg']
     )">
       <h4>Construction Hazard</h4>
       <p>Falling material, restricted entry</p>
@@ -916,10 +943,24 @@
     <div class="hazard-card green" onclick="showHazardGallery(
       'Stamped Area',
       'Auditorium, Entry Gates',
-      ['static/images/stamped1.jpg']
+      ['static/images/openArea/tunnel2.jpg','static/images/openArea/forest2.jpg']
     )">
       <h4>Stamped Prone Area</h4>
       <p>Risk during crowd movement</p>
+    </div>
+
+     <!-- Fire -->
+    <div class="hazard-card red" onclick="showHazardGallery(
+      'Fire Hazard',
+      'Kitchen, Admin Block, Hostel, 11kV Sub Station',
+      ['static/images/Hazards/fire hazard/WhatsApp Image 2025-06-25 at 16.46.16_e94d5388.jpg',
+      'static/images/fire/fire1.jpg','static/images/fire/fire2.jpg',
+      'static/images/Hazards/fire hazard/WhatsApp Image 2025-06-25 at 16.46.24_6eef5647.jpg',
+      'static/images/Hazards/fire hazard/WhatsApp Image 2025-06-25 at 16.46.25_e806543c.jpg',
+      'static/images/Hazards/fire hazard/WhatsApp Image 2025-06-25 at 16.46.32_de900c17.jpg',]
+    )">
+      <h4>Fire Prone Area</h4>
+      <p>Kitchen, Open Area, Miawalki Forest, Admin Block, Hostel, Sub Station</p>
     </div>
 
   </div>
@@ -1049,7 +1090,7 @@
             <li>Full restoration of services (power, water, IT)</li>
             <li>Post-disaster review and plan updates</li>
             <li>Government compensation facilitation (if applicable)</li></P>
-             <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
+             <!-- <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
             <div id="damageTab" class="tabPanel" style="display: none;">
               <h3>Damage Assessment Details</h3>
               <ul>
@@ -1057,9 +1098,9 @@
                 <li>IT Infrastructure & Equipment Loss</li>
                 <li>Casualty & Injury Reports</li>
                 <li>Estimated Recovery Cost</li>
-              </ul>
+              </ul> -->
              
-             <h3>🧱 Structural Damage Evaluation</h3>
+             <!-- <h3>🧱 Structural Damage Evaluation</h3>
               <div class="form-block">
                 <label>Location: <input type="text" id="structLoc"></label>
                 <label>Damage Level: <input type="text" id="structLevel"></label>
@@ -1096,7 +1137,7 @@
         </div>
 
         <!-- 🆕 Add separate table container -->
-        <div id="casualtyHistory" class="mt-2"></div>
+        <!-- <div id="casualtyHistory" class="mt-2"></div>
 
         <hr>
       <h3>💹 Estimated Recovery Cost</h3>
@@ -1107,16 +1148,91 @@
         <button onclick="saveRecoveryLoss()">Save</button>
         <button onclick="viewHistory('re_cost')">📄 View History</button>
         <button onclick="downloadCSV('re_cost')">⬇ Download CSV</button>
-      </div>
+      </div> -->
 
       <!-- 🆕 Add table container -->
-      <div id="recoveryHistory" class="mt-2"></div>
+      <!-- <div id="recoveryHistory" class="mt-2"></div>
 
       </div>
  
         <p>     <br>   </p>
-        <button onclick="downloadAllCSVs()">⬇ Download CSV information of Damage Assessment and quicks repairs</button>
-          </div>
+        <button onclick="downloadAllCSVs()">⬇ Download CSV information of Damage Assessment and quicks repairs</button> --> 
+      <button onclick="toggleInfoBox('damageTab')">📋 Damage Assessment</button>
+
+<div id="damageTab" class="tabPanel" style="display: none;">
+  <h3>Damage Assessment Details</h3>
+  <ul>
+    <li>Structural Damage Evaluation</li>
+    <li>IT Infrastructure & Equipment Loss</li>
+    <li>Casualty & Injury Reports</li>
+    <li>Estimated Recovery Cost</li>
+  </ul>
+
+  <h3>🧱 Structural Damage Evaluation</h3>
+  <div class="form-block">
+    <label>Location: <input type="text" id="structLoc"></label>
+    <label>Damage Level: <input type="text" id="structLevel"></label>
+    <label>Remarks: <textarea id="structRemarks"></textarea></label>
+    <button onclick="saveStructDamage()">Save</button>
+    <button onclick="viewHistory('struct')">📄 View History</button>
+    <button onclick="downloadCSV('struct')">⬇ Download CSV</button>
+    <button onclick="clearStructForm()" class="clear-btn">🧹 Clear</button>
+
+  </div>
+  <div id="structHistory"></div>
+
+  <hr>
+
+  <h3>💻 IT Infrastructure & Equipment Loss</h3>
+  <div class="form-block">
+    <label>System/Area: <input type="text" id="itArea"></label>
+    <label>Type of Equipment: <input type="text" id="itType"></label>
+    <label>Remarks: <textarea id="itRemarks"></textarea></label>
+    <button onclick="saveITLoss()">Save</button>
+    <button onclick="viewHistory('it')">📄 View History</button>
+    <button onclick="downloadCSV('it')">⬇ Download CSV</button>
+    <button onclick="clearITForm()" class="clear-btn">🧹 Clear</button>
+
+  </div>
+  <div id="itHistory"></div>
+
+  <hr>
+
+  <h3>🤕 Casualty and Injury Reports</h3>
+  <div class="form-block">
+    <label>Person Name: <input type="text" id="casualtyName"></label>
+    <label>Injury Severity: <input type="text" id="casualtySeverity"></label>
+    <label>Details: <textarea id="casualtyNote"></textarea></label>
+    <button onclick="saveCasualtyDamage()">Save</button>
+    <button onclick="viewHistory('casual')">📄 View History</button>
+    <button onclick="downloadCSV('casual')">⬇ Download CSV</button>
+    <button onclick="clearCasualtyForm()" class="clear-btn">🧹 Clear</button>
+
+  </div>
+  <div id="casualtyHistory"></div>
+
+  <hr>
+
+  <h3>💹 Estimated Recovery Cost</h3>
+  <div class="form-block">
+    <label>Estimated Cost (INR): <input type="number" id="recoveryCost"></label>
+    <label>Affected Area: <input type="text" id="recoveryArea"></label>
+    <label>Remarks: <textarea id="recoveryRemarks"></textarea></label>
+    <button onclick="saveRecoveryLoss()">Save</button>
+    <button onclick="viewHistory('re_cost')">📄 View History</button>
+    <button onclick="downloadCSV('re_cost')">⬇ Download CSV</button>
+    <button onclick="clearRecoveryForm()" class="clear-btn">🧹 Clear</button>
+
+  </div>
+  <div id="recoveryHistory"></div>
+
+  <br>
+  <button onclick="downloadAllCSVs()">⬇ Download All Damage CSVs</button>
+  <button onclick="clearAllDamageData()" class="danger">🧹 Clear All Damage Logs</button>
+</div>
+   
+      
+      </div>
     </section>
 
     <section id="map">
@@ -1232,14 +1348,36 @@
           </div>
           
           <div class="info-box">
-            <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
-            <label>Call Time: <input type='time' id='callTime'></label><br>
-            <label>Arrival Time: <input type='time' id='arrivalTime'></label><br>
-            <label>Resolution Time: <input type='time' id='resolveTime'></label><br>
-            <label>Ambulance Details: <input type='text' id='ambulanceInfo' placeholder='Ambulance Reg./Driver'></label><br>
-            <label>Patient Condition: <textarea id='patientNote'></textarea></label><br>
-            <button onclick='submitIncidentDetails()'>Submit Log</button>
-          </div>`;
+  <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
+
+  <div class="form-group">
+    <label for="callTime">Call Time:</label>
+    <input type="time" id="callTime">
+  </div>
+
+  <div class="form-group">
+    <label for="arrivalTime">Arrival Time:</label>
+    <input type="time" id="arrivalTime">
+  </div>
+
+  <div class="form-group">
+    <label for="resolveTime">Resolution Time:</label>
+    <input type="time" id="resolveTime">
+  </div>
+
+  <div class="form-group">
+    <label for="ambulanceInfo">Ambulance Details:</label>
+    <input type="text" id="ambulanceInfo" placeholder="Ambulance Reg./Driver">
+  </div>
+
+  <div class="form-group">
+    <label for="patientNote">Patient Condition:</label>
+    <textarea id="patientNote" rows="3"></textarea>
+  </div>
+
+  <button onclick="submitIncidentDetails()">Submit Log</button>
+</div>
+`;
       } else {
         details.innerHTML = "";
       }
@@ -1328,16 +1466,32 @@ function handleSubtype(value) {
             </p>            </ul>
       </div>
       <div class="info-box">
-        <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
-        <label>Reporting Call Time: <input type='time' id='callTime'></label><br>
-        <label>Arrival Time: <input type='time' id='arrivalTime'></label><br>
-        <label>Resolution Time: <input type='time' id='resolveTime'></label><br>
-        <label>Cause of Fire: <textarea id='fireCause'></label><br>
-        <label>Number of Staff reached: <input type='text' id='staffreached'></label><br>
-        <label>Ambulance Details: <input type='text' id='ambulanceInfo' placeholder='Ambulance Reg./Driver'></label><br>
-        <label>Patient Condition: <textarea id='patientNote'></textarea></label><br>
-        <button onclick='submitIncidentDetails()'>Submit Log</button>
-      </div>
+  <h3><i class="fas fa-clipboard-list"></i> Log Response Details</h3>
+
+  <label for="callTime">Reporting Call Time:</label>
+  <input type="time" id="callTime"><br>
+
+  <label for="arrivalTime">Arrival Time:</label>
+  <input type="time" id="arrivalTime"><br>
+
+  <label for="resolveTime">Resolution Time:</label>
+  <input type="time" id="resolveTime"><br>
+
+  <label for="fireCause">Cause of Fire:</label>
+  <textarea id="fireCause" rows="3"></textarea><br>
+
+  <label for="staffreached">Number of Staff reached:</label>
+  <input type="text" id="staffreached"><br>
+
+  <label for="ambulanceInfo">Ambulance Details:</label>
+  <input type="text" id="ambulanceInfo" placeholder="Ambulance Reg./Driver"><br>
+
+  <label for="patientNote">Patient Condition:</label>
+  <textarea id="patientNote" rows="3"></textarea><br>
+
+  <button onclick="submitIncidentDetails()">Submit Log</button>
+</div>
+
     `;
   } else if (value === "Evacuation Plans") {
     showTab("prep");

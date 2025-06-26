@@ -1,5 +1,23 @@
+//image handling
+function openImageModal(img) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalSliderImg');
+  modal.style.display = 'flex';
+  modalImg.src = img.src;
+  modalImg.alt = img.alt || "Full image";
+}
+
+function closeImageModal() {
+  document.getElementById('imageModal').style.display = 'none';
+}
+
+document.getElementById("imageModal").addEventListener("click", function (e) {
+  if (e.target === this) closeImageModal();
+});
+
+
 // local storage helper
-
+// 🔁 Local Storage Helpers
 function saveToStorage(key, entry) {
   const existing = JSON.parse(localStorage.getItem(key)) || [];
   existing.push(entry);
@@ -14,95 +32,7 @@ function clearStorage(key) {
   localStorage.removeItem(key);
 }
 
-// Handle tab switching
-function showTab(tabId) {
-  // Hide all panels
-  document.querySelectorAll('.tabPanel').forEach(panel => panel.style.display = 'none');
-  // Remove active class from all tab buttons
-  document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('active-tab'));
-  // Show selected panel
-  document.getElementById(tabId).style.display = 'block';
-  // Highlight active tab
-  const activeButton = Array.from(document.querySelectorAll('#tabs button'))
-    .find(btn => btn.getAttribute('onclick').includes(tabId));
-  if (activeButton) activeButton.classList.add('active-tab');
-}
-
-
-function toggleInfoBox(id) {
-  const tab = document.getElementById(id);
-  tab.style.display = (tab.style.display === 'none') ? 'block' : 'none';
-}
-document.querySelectorAll('.accordion-btn').forEach(btn => {
-  btn.addEventListener('click', function () {
-    document.querySelectorAll('.accordion-content').forEach(content => {
-      if (content !== this.nextElementSibling) {
-        content.style.display = 'none';
-      }
-    });
-    const content = this.nextElementSibling;
-    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-  });
-});
-
-// Update Preparedness content
-document.getElementById('disasterPrep').addEventListener('change', function () {
-  const val = this.value;
-  const out = document.getElementById('prepContent');
-  out.innerHTML = '';
-  if (val === 'Training') {
-    out.innerHTML = '<p>Preparedness training includes fire safety, first-aid, and drills.</p>';
-  } else if (val === 'Drills') {
-    out.innerHTML = '<p>Mock drills conducted quarterly to simulate disaster response.</p>';
-  } else if (val === 'DM Emergency Response Team') {
-    out.innerHTML = '<p>Dedicated team for each block assigned emergency roles.</p>';
-  } else if (val === 'Evacuation Plans') {
-    out.innerHTML = '<p>Evacution Plan </p>';
-  }
-});
-
-let damageLog = [];
-
-function recordDamage() {
-  const type = document.getElementById("damageType").value;
-  const cost = document.getElementById("damageCost").value;
-  const replaced = document.getElementById("damageReplaced").value;
-  const time = new Date().toLocaleString();
-  damageLog.push({ time, type, cost, replaced });
-  alert("Recorded.");
-}
-
-function toggleDamageHistory() {
-  const container = document.getElementById("damageHistory");
-  if (container.style.display === "none") {
-    container.style.display = "block";
-    let table = "<table><tr><th>Time</th><th>Type</th><th>Cost</th><th>Replaced</th></tr>";
-    damageLog.forEach(d => {
-      table += `<tr><td>${d.time}</td><td>${d.type}</td><td>${d.cost}</td><td>${d.replaced}</td></tr>`;
-    });
-    table += "</table>";
-    container.innerHTML = table;
-  } else {
-    container.style.display = "none";
-  }
-}
-
-// ========= GLOBAL STORAGE UTILITIES =========
-function saveToStorage(key, entry) {
-  const existing = JSON.parse(localStorage.getItem(key)) || [];
-  existing.push(entry);
-  localStorage.setItem(key, JSON.stringify(existing));
-}
-
-function getFromStorage(key) {
-  return JSON.parse(localStorage.getItem(key)) || [];
-}
-
-function clearStorage(key) {
-  localStorage.removeItem(key);
-}
-
-// ========= SAVE FUNCTIONS =========
+// 🧱 Structural Damage
 function saveStructDamage() {
   const entry = {
     Time: new Date().toLocaleString(),
@@ -114,6 +44,7 @@ function saveStructDamage() {
   alert("✅ Structural Damage Record Saved.");
 }
 
+// 💻 IT Loss
 function saveITLoss() {
   const entry = {
     Time: new Date().toLocaleString(),
@@ -125,6 +56,7 @@ function saveITLoss() {
   alert("✅ IT Damage Record Saved.");
 }
 
+// 🤕 Casualty
 function saveCasualtyDamage() {
   const entry = {
     Time: new Date().toLocaleString(),
@@ -136,6 +68,7 @@ function saveCasualtyDamage() {
   alert("✅ Casualty/Injury Record Saved.");
 }
 
+// 💹 Recovery Cost
 function saveRecoveryLoss() {
   const entry = {
     Time: new Date().toLocaleString(),
@@ -147,7 +80,7 @@ function saveRecoveryLoss() {
   alert("✅ Recovery Cost Record Saved.");
 }
 
-// ========= VIEW HISTORY =========
+// 📄 View History (latest 4)
 function viewHistory(type) {
   const keyMap = {
     struct: "structData",
@@ -159,23 +92,21 @@ function viewHistory(type) {
   const idMap = {
     struct: "structHistory",
     it: "itHistory",
-    casual: "casualtyHistory",     // ✅ Updated: previously wrong (was overwriting form)
-    re_cost: "recoveryHistory"     // ✅ Updated: same issue
+    casual: "casualtyHistory",
+    re_cost: "recoveryHistory"
   };
 
-  const data = getFromStorage(keyMap[type]);
-  const id = idMap[type];
-  const container = document.getElementById(id);
+  const data = getFromStorage(keyMap[type]).slice(-4).reverse();
+  const container = document.getElementById(idMap[type]);
 
   if (!container) return;
-  if (!data || !data.length) {
+  if (!data.length) {
     container.innerHTML = "<p class='text-muted'>No data available.</p>";
     return;
   }
 
-  let table = `<table class="table table-bordered table-sm mt-2">
-  <thead class="table-light"><tr>`;
-  Object.keys(data[0] || {}).forEach(k => table += `<th>${k}</th>`);
+  let table = `<table class="log-table"><thead><tr>`;
+  Object.keys(data[0]).forEach(k => table += `<th>${k}</th>`);
   table += `</tr></thead><tbody>`;
   data.forEach(row => {
     table += '<tr>';
@@ -186,7 +117,7 @@ function viewHistory(type) {
   container.innerHTML = table;
 }
 
-// ========= DOWNLOAD CSV =========
+// ⬇ Download CSV
 function downloadCSV(type) {
   const keyMap = {
     struct: ["structData", "structural_damage.csv"],
@@ -197,11 +128,7 @@ function downloadCSV(type) {
 
   const [storageKey, filename] = keyMap[type];
   const data = getFromStorage(storageKey);
-
-  if (!data.length) {
-    alert("⚠️ No data to export.");
-    return;
-  }
+  if (!data.length) return alert("⚠️ No data to export.");
 
   const headers = Object.keys(data[0]);
   const rows = data.map(row => headers.map(h => `"${row[h]}"`).join(','));
@@ -214,52 +141,302 @@ function downloadCSV(type) {
   a.click();
 }
 
-// ========= AUTO-LOAD HISTORY ON PAGE LOAD =========
-window.onload = function () {
-  viewHistory('struct');
-  viewHistory('it');
-  viewHistory('casual');
-  viewHistory('re_cost');
-};
+// ⬇ Download All CSVs
+function downloadAllCSVs() {
+  ['struct', 'it', 'casual', 're_cost'].forEach(downloadCSV);
+}
 
-
+// 🧹 Clear All
 function clearAllDamageData() {
   ["structData", "itData", "casualtyData", "recoveryData"].forEach(clearStorage);
-  alert("All local data cleared.");
+  alert("🧹 All local damage data cleared.");
   location.reload();
 }
 
+// 📂 Show Tab (used in tab switching)
+function showTab(tabId) {
+  document.querySelectorAll('.tabPanel').forEach(panel => panel.style.display = 'none');
+  document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('active-tab'));
 
-  function downloadAllCSVs() {
-      downloadCSV('it');
-      downloadCSV('struct');
-      downloadCSV('re_cost');
-      downloadCSV('casual');
-    }
-let casualtyData = [];
+  document.getElementById(tabId).style.display = 'block';
 
-function saveCasualtyDamage() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Name: document.getElementById('casualtyName').value,
-    Severity: document.getElementById('casualtySeverity').value,
-    Description: document.getElementById('casualtyNote').value
-  };
-  casualtyData.push(entry);
-  alert("Saved Casualty/Injury Record.");
+  const activeButton = Array.from(document.querySelectorAll('#tabs button'))
+    .find(btn => btn.getAttribute('onclick').includes(tabId));
+  if (activeButton) activeButton.classList.add('active-tab');
 }
-let recoveryData = [];
 
-function saveRecoveryLoss() {
-  const entry = {
-    Time: new Date().toLocaleString(),
-    Cost: document.getElementById('recoveryCost').value,
-    Area: document.getElementById('recoveryArea').value,
-    Remarks: document.getElementById('recoveryRemarks').value
-  };
-  recoveryData.push(entry);
-  alert("Saved Recovery Cost Record.");
+// ⬇ Toggle collapsible content
+function toggleInfoBox(id) {
+  const tab = document.getElementById(id);
+  tab.style.display = (tab.style.display === 'none') ? 'block' : 'none';
 }
+
+// 🪄 Auto Load on Startup
+window.onload = function () {
+  ['struct', 'it', 'casual', 're_cost'].forEach(viewHistory);
+};
+
+
+// function saveToStorage(key, entry) {
+//   const existing = JSON.parse(localStorage.getItem(key)) || [];
+//   existing.push(entry);
+//   localStorage.setItem(key, JSON.stringify(existing));
+// }
+
+// function getFromStorage(key) {
+//   return JSON.parse(localStorage.getItem(key)) || [];
+// }
+
+// function clearStorage(key) {
+//   localStorage.removeItem(key);
+// }
+
+// // Handle tab switching
+// function showTab(tabId) {
+//   // Hide all panels
+//   document.querySelectorAll('.tabPanel').forEach(panel => panel.style.display = 'none');
+//   // Remove active class from all tab buttons
+//   document.querySelectorAll('#tabs button').forEach(btn => btn.classList.remove('active-tab'));
+//   // Show selected panel
+//   document.getElementById(tabId).style.display = 'block';
+//   // Highlight active tab
+//   const activeButton = Array.from(document.querySelectorAll('#tabs button'))
+//     .find(btn => btn.getAttribute('onclick').includes(tabId));
+//   if (activeButton) activeButton.classList.add('active-tab');
+// }
+
+
+// function toggleInfoBox(id) {
+//   const tab = document.getElementById(id);
+//   tab.style.display = (tab.style.display === 'none') ? 'block' : 'none';
+// }
+// document.querySelectorAll('.accordion-btn').forEach(btn => {
+//   btn.addEventListener('click', function () {
+//     document.querySelectorAll('.accordion-content').forEach(content => {
+//       if (content !== this.nextElementSibling) {
+//         content.style.display = 'none';
+//       }
+//     });
+//     const content = this.nextElementSibling;
+//     content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+//   });
+// });
+
+// // Update Preparedness content
+// document.getElementById('disasterPrep').addEventListener('change', function () {
+//   const val = this.value;
+//   const out = document.getElementById('prepContent');
+//   out.innerHTML = '';
+//   if (val === 'Training') {
+//     out.innerHTML = '<p>Preparedness training includes fire safety, first-aid, and drills.</p>';
+//   } else if (val === 'Drills') {
+//     out.innerHTML = '<p>Mock drills conducted quarterly to simulate disaster response.</p>';
+//   } else if (val === 'DM Emergency Response Team') {
+//     out.innerHTML = '<p>Dedicated team for each block assigned emergency roles.</p>';
+//   } else if (val === 'Evacuation Plans') {
+//     out.innerHTML = '<p>Evacution Plan </p>';
+//   }
+// });
+
+// let damageLog = [];
+
+// function recordDamage() {
+//   const type = document.getElementById("damageType").value;
+//   const cost = document.getElementById("damageCost").value;
+//   const replaced = document.getElementById("damageReplaced").value;
+//   const time = new Date().toLocaleString();
+//   damageLog.push({ time, type, cost, replaced });
+//   alert("Recorded.");
+// }
+
+// function toggleDamageHistory() {
+//   const container = document.getElementById("damageHistory");
+//   if (container.style.display === "none") {
+//     container.style.display = "block";
+//     let table = "<table><tr><th>Time</th><th>Type</th><th>Cost</th><th>Replaced</th></tr>";
+//     damageLog.forEach(d => {
+//       table += `<tr><td>${d.time}</td><td>${d.type}</td><td>${d.cost}</td><td>${d.replaced}</td></tr>`;
+//     });
+//     table += "</table>";
+//     container.innerHTML = table;
+//   } else {
+//     container.style.display = "none";
+//   }
+// }
+
+// // ========= GLOBAL STORAGE UTILITIES =========
+// function saveToStorage(key, entry) {
+//   const existing = JSON.parse(localStorage.getItem(key)) || [];
+//   existing.push(entry);
+//   localStorage.setItem(key, JSON.stringify(existing));
+// }
+
+// function getFromStorage(key) {
+//   return JSON.parse(localStorage.getItem(key)) || [];
+// }
+
+// function clearStorage(key) {
+//   localStorage.removeItem(key);
+// }
+
+// // ========= SAVE FUNCTIONS =========
+// function saveStructDamage() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Location: document.getElementById('structLoc').value,
+//     Level: document.getElementById('structLevel').value,
+//     Remarks: document.getElementById('structRemarks').value
+//   };
+//   saveToStorage("structData", entry);
+//   alert("✅ Structural Damage Record Saved.");
+// }
+
+// function saveITLoss() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Area: document.getElementById('itArea').value,
+//     Equipment: document.getElementById('itType').value,
+//     Remarks: document.getElementById('itRemarks').value
+//   };
+//   saveToStorage("itData", entry);
+//   alert("✅ IT Damage Record Saved.");
+// }
+
+// function saveCasualtyDamage() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Name: document.getElementById('casualtyName').value,
+//     Severity: document.getElementById('casualtySeverity').value,
+//     Description: document.getElementById('casualtyNote').value
+//   };
+//   saveToStorage("casualtyData", entry);
+//   alert("✅ Casualty/Injury Record Saved.");
+// }
+
+// function saveRecoveryLoss() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Cost: document.getElementById('recoveryCost').value,
+//     Area: document.getElementById('recoveryArea').value,
+//     Remarks: document.getElementById('recoveryRemarks').value
+//   };
+//   saveToStorage("recoveryData", entry);
+//   alert("✅ Recovery Cost Record Saved.");
+// }
+
+// // ========= VIEW HISTORY =========
+// function viewHistory(type) {
+//   const keyMap = {
+//     struct: "structData",
+//     it: "itData",
+//     casual: "casualtyData",
+//     re_cost: "recoveryData"
+//   };
+
+//   const idMap = {
+//     struct: "structHistory",
+//     it: "itHistory",
+//     casual: "casualtyHistory",     // ✅ Updated: previously wrong (was overwriting form)
+//     re_cost: "recoveryHistory"     // ✅ Updated: same issue
+//   };
+
+//   const data = getFromStorage(keyMap[type]);
+//   const id = idMap[type];
+//   const container = document.getElementById(id);
+
+//   if (!container) return;
+//   if (!data || !data.length) {
+//     container.innerHTML = "<p class='text-muted'>No data available.</p>";
+//     return;
+//   }
+
+//   let table = `<table class="table table-bordered table-sm mt-2">
+//   <thead class="table-light"><tr>`;
+//   Object.keys(data[0] || {}).forEach(k => table += `<th>${k}</th>`);
+//   table += `</tr></thead><tbody>`;
+//   data.forEach(row => {
+//     table += '<tr>';
+//     Object.values(row).forEach(cell => table += `<td>${cell}</td>`);
+//     table += '</tr>';
+//   });
+//   table += '</tbody></table>';
+//   container.innerHTML = table;
+// }
+
+// // ========= DOWNLOAD CSV =========
+// function downloadCSV(type) {
+//   const keyMap = {
+//     struct: ["structData", "structural_damage.csv"],
+//     it: ["itData", "it_equipment_loss.csv"],
+//     casual: ["casualtyData", "casualty_injury_report.csv"],
+//     re_cost: ["recoveryData", "recovery_cost.csv"]
+//   };
+
+//   const [storageKey, filename] = keyMap[type];
+//   const data = getFromStorage(storageKey);
+
+//   if (!data.length) {
+//     alert("⚠️ No data to export.");
+//     return;
+//   }
+
+//   const headers = Object.keys(data[0]);
+//   const rows = data.map(row => headers.map(h => `"${row[h]}"`).join(','));
+//   const csv = [headers.join(','), ...rows].join('\n');
+
+//   const blob = new Blob([csv], { type: 'text/csv' });
+//   const a = document.createElement('a');
+//   a.href = URL.createObjectURL(blob);
+//   a.download = filename;
+//   a.click();
+// }
+
+// // ========= AUTO-LOAD HISTORY ON PAGE LOAD =========
+// window.onload = function () {
+//   viewHistory('struct');
+//   viewHistory('it');
+//   viewHistory('casual');
+//   viewHistory('re_cost');
+// };
+
+
+// function clearAllDamageData() {
+//   ["structData", "itData", "casualtyData", "recoveryData"].forEach(clearStorage);
+//   alert("All local data cleared.");
+//   location.reload();
+// }
+
+
+//   function downloadAllCSVs() {
+//       downloadCSV('it');
+//       downloadCSV('struct');
+//       downloadCSV('re_cost');
+//       downloadCSV('casual');
+//     }
+// let casualtyData = [];
+
+// function saveCasualtyDamage() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Name: document.getElementById('casualtyName').value,
+//     Severity: document.getElementById('casualtySeverity').value,
+//     Description: document.getElementById('casualtyNote').value
+//   };
+//   casualtyData.push(entry);
+//   alert("Saved Casualty/Injury Record.");
+// }
+// let recoveryData = [];
+
+// function saveRecoveryLoss() {
+//   const entry = {
+//     Time: new Date().toLocaleString(),
+//     Cost: document.getElementById('recoveryCost').value,
+//     Area: document.getElementById('recoveryArea').value,
+//     Remarks: document.getElementById('recoveryRemarks').value
+//   };
+//   recoveryData.push(entry);
+//   alert("Saved Recovery Cost Record.");
+// }
 
 //======================== chat bot finction =============================
 /*function toggleChatPopup() {
@@ -479,24 +656,29 @@ function showHazardGallery(title, desc, imgArray) {
     const img = document.createElement('img');
     img.src = src;
     img.alt = title + ' image';
+    img.onclick = () => openImageModal(img);  // enable zoom
     container.appendChild(img);
   });
 
   document.getElementById('hazardModal').style.display = 'flex';
 }
 
+
 function closeModal() {
   document.getElementById('hazardModal').style.display = 'none';
 }
 
 // Modal logic
-function openImageModal(img) {
-  document.getElementById('modalSliderImg').src = img.src;
-  document.getElementById('imageModal').style.display = 'flex';
-}
-function closeImageModal() {
-  document.getElementById('imageModal').style.display = 'none';
-}
+// function openImageModal(img) {
+//   document.getElementById('modalSliderImg').src = img.src;
+//   document.getElementById('imageModal').style.display = 'flex';
+// }
+// function closeImageModal() {
+//   document.getElementById('imageModal').style.display = 'none';
+// }
+
+
+
 
 // User control scrolling
 function scrollSlider(direction) {
@@ -518,6 +700,7 @@ function openInfraGallery(title, desc, imageList) {
     const img = document.createElement('img');
     img.src = src;
     img.alt = title;
+    img.onclick = () => openImageModal(img); 
     gallery.appendChild(img);
   });
 
@@ -526,6 +709,30 @@ function openInfraGallery(title, desc, imageList) {
 
 function closeInfraModal() {
   document.getElementById('infraModal').style.display = 'none';
+}
+
+function clearStructForm() {
+  document.getElementById('structLoc').value = '';
+  document.getElementById('structLevel').value = '';
+  document.getElementById('structRemarks').value = '';
+}
+
+function clearITForm() {
+  document.getElementById('itArea').value = '';
+  document.getElementById('itType').value = '';
+  document.getElementById('itRemarks').value = '';
+}
+
+function clearCasualtyForm() {
+  document.getElementById('casualtyName').value = '';
+  document.getElementById('casualtySeverity').value = '';
+  document.getElementById('casualtyNote').value = '';
+}
+
+function clearRecoveryForm() {
+  document.getElementById('recoveryCost').value = '';
+  document.getElementById('recoveryArea').value = '';
+  document.getElementById('recoveryRemarks').value = '';
 }
 
 
