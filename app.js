@@ -308,10 +308,10 @@ L.marker([12.884487098478836, 77.44940630107578],{ icon: policeIcon }) // 🏥 R
 
 L.marker([12.87025, 77.42980],{ icon: adminIcon }) // admin block
   .addTo(map)
-  .bindPopup("<b>Admin Building</b><");
+  .bindPopup("<b>Admin Building</b>");
 L.marker([12.867583, 77.428444],{ icon: hostelIcon }) // admin block
   .addTo(map)
-  .bindPopup("<b>Hostel Building</b><");
+  .bindPopup("<b>Hostel Building</b>");
 });
 
 // Campus boundary (

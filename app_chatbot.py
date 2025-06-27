@@ -140,7 +140,10 @@ vectorstore = FAISS.load_local(
 
 # === Step 3: Load Groq LLM ===
 llm = ChatGroq(
-    model_name="qwen-qwq-32b",
+    model_name="meta-llama/llama-4-maverick-17b-128e-instruct",
+    #qwen-qwq-32b
+    #meta-llama/llama-4-maverick-17b-128e-instruct
+   # model_name="deepseek-r1-distill-llama-70b",
     temperature=0
 )
 

@@ -503,7 +503,7 @@ button:hover {
 .floating-slider {
   display: flex;
   width: max-content;
-  animation: scrollLeft 15s linear infinite; /* 🔁 faster */
+  animation: scrollLeft 60s linear infinite; /* 🔁 faster */
 }
 
 .floating-slider img {
@@ -512,7 +512,7 @@ button:hover {
   object-fit: cover;
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.3s;
+  transition: transform 3s;
 }
 
 .floating-slider img:hover {
@@ -611,7 +611,7 @@ button.clear-btn:hover {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #7b3fe4;
+  background: #e23232;
   color: white;
   padding: 12px 14px;
   border-radius: 50%;
@@ -639,7 +639,7 @@ button.clear-btn:hover {
 }
 
 #chatHeader {
-  background: #7b3fe4;
+  background: #e4583f;
   color: white;
   padding: 10px 12px;
   font-weight: bold;
@@ -677,7 +677,7 @@ button.clear-btn:hover {
 
 #chatMessages .user {
   background-color: #e4d7ff;
-  color: #4b2ea1;
+  color: #51abdb;
   margin-left: auto;
   text-align: right;
 }
@@ -710,7 +710,7 @@ button.clear-btn:hover {
   padding: 8px 10px;           /* Compact height & width */
   background: #3b90f1;
   color: white;
-  border: 1px solid #3f9fe4;
+  border: 1px solid #02080c;
   border-left: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
